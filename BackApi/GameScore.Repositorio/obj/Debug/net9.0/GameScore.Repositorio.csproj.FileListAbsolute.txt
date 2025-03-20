@@ -1,0 +1,11 @@
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\bin\Debug\net9.0\GameScore.Repositorio.deps.json
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\bin\Debug\net9.0\GameScore.Repositorio.dll
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\bin\Debug\net9.0\GameScore.Repositorio.pdb
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.AssemblyInfoInputs.cache
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.AssemblyInfo.cs
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.csproj.CoreCompileInputs.cache
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.dll
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\refint\GameScore.Repositorio.dll
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\GameScore.Repositorio.pdb
+C:\Aulas\Back360\BackApi\GameScore.Repositorio\obj\Debug\net9.0\ref\GameScore.Repositorio.dll

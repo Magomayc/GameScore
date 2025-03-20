@@ -1,0 +1,11 @@
+C:\Aulas\Back360\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.deps.json
+C:\Aulas\Back360\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.dll
+C:\Aulas\Back360\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.pdb
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.AssemblyInfoInputs.cache
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.AssemblyInfo.cs
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.csproj.CoreCompileInputs.cache
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.dll
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\refint\GameScore.Dominio.dll
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.pdb
+C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\ref\GameScore.Dominio.dll
