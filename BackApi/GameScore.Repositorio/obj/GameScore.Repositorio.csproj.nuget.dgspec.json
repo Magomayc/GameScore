@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Aulas\\Back360\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj": {}
+    "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj": {}
   },
   "projects": {
-    "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj": {
+    "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj",
+        "projectUniqueName": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj",
         "projectName": "GameScore.Dominio",
-        "projectPath": "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj",
-        "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\obj\\",
+        "projectPath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj",
+        "packagesPath": "C:\\Users\\mayco\\.nuget\\packages\\",
+        "outputPath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mayco\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -63,17 +69,17 @@
         }
       }
     },
-    "C:\\Aulas\\Back360\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj": {
+    "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Aulas\\Back360\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj",
+        "projectUniqueName": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj",
         "projectName": "GameScore.Repositorio",
-        "projectPath": "C:\\Aulas\\Back360\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj",
-        "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "C:\\Aulas\\Back360\\BackApi\\GameScore.Repositorio\\obj\\",
+        "projectPath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Repositorio\\GameScore.Repositorio.csproj",
+        "packagesPath": "C:\\Users\\mayco\\.nuget\\packages\\",
+        "outputPath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Repositorio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mayco\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -85,8 +91,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj": {
-                "projectPath": "C:\\Aulas\\Back360\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj"
+              "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj": {
+                "projectPath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Dominio\\GameScore.Dominio.csproj"
               }
             }
           }
@@ -112,6 +118,16 @@
               "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqLite": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",

@@ -16,5 +16,12 @@ class UsuarioConfiguracoes : IEntityTypeConfiguration<Usuario>
         builder.Property(usuario => usuario.Senha).HasColumnName("Senha").IsRequired();
         builder.Property(usuario => usuario.TipoUsuarioId).HasColumnName("TipoUsuarioId").IsRequired();
         builder.Property(usuario => usuario.Ativo).HasColumnName("Ativo");
+
+
+        // Configuração do relacionamento muitos-para-muitos via tabela intermediária
+        builder
+            .HasMany(usuario => usuario.UsuarioJogos) // Usuario tem muitos UsuarioJogo
+            .WithOne(uj => uj.Usuario) // UsuarioJogo tem um Usuario
+            .HasForeignKey(uj => uj.UsuarioID); // Chave estrangeira de UsuarioJogo
     }
 }

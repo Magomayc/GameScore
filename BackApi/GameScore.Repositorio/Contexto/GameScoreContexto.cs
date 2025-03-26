@@ -33,6 +33,7 @@ public class GameScoreContexto : DbContext
     {
         modelBuilder.ApplyConfiguration(new UsuarioConfiguracoes());
         modelBuilder.ApplyConfiguration(new JogoConfiguracoes());
+        
     }
 
 }
