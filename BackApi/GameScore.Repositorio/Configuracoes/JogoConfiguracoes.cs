@@ -14,6 +14,7 @@ class JogoConfiguracoes : IEntityTypeConfiguration<Jogo>
         builder.Property(jogo => jogo.Nome).HasColumnName("Nome").IsRequired();
         builder.Property(jogo => jogo.Genero).HasColumnName("Genero").IsRequired();
         builder.Property(jogo => jogo.Descricao).HasColumnName("Descricao").IsRequired();
+        builder.Property(usuario => usuario.Ativo).HasColumnName("Ativo");
 
         builder
             .HasMany(jogo => jogo.UsuarioJogos) // Jogo tem muitos UsuarioJogo

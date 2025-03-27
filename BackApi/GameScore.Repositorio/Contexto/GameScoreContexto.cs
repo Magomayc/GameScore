@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using GameScore.Dominio.Entidades;
+using DataAccess.Configuracoes;
 
 
 namespace DataAccess.Contexto;
@@ -9,6 +10,7 @@ public class GameScoreContexto : DbContext
     private readonly DbContextOptions _options;
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Jogo> Jogos { get; set; }
+    public DbSet<UsuarioJogo> UsuarioJogos { get; set; }
 
     public GameScoreContexto()
     {
@@ -33,7 +35,7 @@ public class GameScoreContexto : DbContext
     {
         modelBuilder.ApplyConfiguration(new UsuarioConfiguracoes());
         modelBuilder.ApplyConfiguration(new JogoConfiguracoes());
-        
+        modelBuilder.ApplyConfiguration(new UsuarioJogoConfiguracoes());      
     }
 
 }

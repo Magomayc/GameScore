@@ -7,4 +7,10 @@ public class Jogo
     public string Genero { get; set; }
     public string Descricao { get; set; }
     public List<UsuarioJogo> UsuarioJogos { get; set; }
+    public bool Ativo { get; set; }
+
+    public Jogo()
+    {
+        Ativo = true;
+    }
 }

@@ -6,5 +6,5 @@ public class UsuarioJogo
     public Usuario Usuario { get; set; }
     public int JogoID { get; set; }
     public Jogo Jogo { get; set; }
-    
+       
 }
