@@ -1,0 +1,12 @@
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.GeneratedMSBuildEditorConfig.editorconfig
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.AssemblyInfoInputs.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.AssemblyInfo.cs
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.csproj.CoreCompileInputs.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.sourcelink.json
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Aplicacao.deps.json
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Aplicacao.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Aplicacao.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\refint\GameScore.Aplicacao.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\ref\GameScore.Aplicacao.dll

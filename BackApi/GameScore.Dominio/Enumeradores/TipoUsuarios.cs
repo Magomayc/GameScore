@@ -1,4 +1,4 @@
-namespace Projeto360.Dominio.Enumeradores
+namespace GameScore.Dominio.Enumeradores
 {
     public enum TipoUsuarios
     {

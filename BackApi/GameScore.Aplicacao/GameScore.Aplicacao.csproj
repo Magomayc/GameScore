@@ -3,7 +3,16 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameScore.Repositorio\GameScore.Repositorio.csproj" />
+    <ProjectReference Include="..\GameScore.Dominio\GameScore.Dominio.csproj" />
+  </ItemGroup>
 
 </Project>

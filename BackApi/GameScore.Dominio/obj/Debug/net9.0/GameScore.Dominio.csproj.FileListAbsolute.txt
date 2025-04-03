@@ -9,3 +9,16 @@ C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.dl
 C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\refint\GameScore.Dominio.dll
 C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.pdb
 C:\Aulas\Back360\BackApi\GameScore.Dominio\obj\Debug\net9.0\ref\GameScore.Dominio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.deps.json
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\bin\Debug\net9.0\GameScore.Dominio.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.csproj.AssemblyReference.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.AssemblyInfoInputs.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.AssemblyInfo.cs
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.csproj.CoreCompileInputs.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.sourcelink.json
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\refint\GameScore.Dominio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\GameScore.Dominio.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Dominio\obj\Debug\net9.0\ref\GameScore.Dominio.dll
