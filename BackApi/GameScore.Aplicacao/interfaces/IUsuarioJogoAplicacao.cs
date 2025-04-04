@@ -10,6 +10,8 @@ namespace GameScore.Aplicacao
 
         Task<UsuarioJogo> ObterAsync(int usuarioId, int jogoId);
 
+        Task<int> SalvarAsync(UsuarioJogo usuarioJogo);
+
         Task RemoverAsync(int usuarioId, int jogoId);
         
         Task<IEnumerable<UsuarioJogo>> ListarAsync();

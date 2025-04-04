@@ -14,11 +14,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Adicionar aplicações.
 builder.Services.AddScoped<IUsuarioAplicacao, UsuarioAplicacao>();
 builder.Services.AddScoped<IJogoAplicacao, JogoAplicacao>();
+builder.Services.AddScoped<IUsuarioJogoAplicacao, UsuarioJogoAplicacao>();
 
 
 // Adicionar interfaces de repositório
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IJogoRepositorio,JogoRepositorio>();
+builder.Services.AddScoped<IUsuarioJogoRepositorio, UsuarioJogoRepositorio>();
 
 // Adicionar serviços
 

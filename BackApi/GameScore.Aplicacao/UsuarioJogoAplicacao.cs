@@ -44,6 +44,11 @@ namespace GameScore.Aplicacao
             return usuarioJogo;
         }
 
+        public async Task<int> SalvarAsync(UsuarioJogo usuarioJogo)
+        {
+            return await _usuarioJogoRepositorio.SalvarAsync(usuarioJogo);
+        }
+
         public async Task RemoverAsync(int usuarioId, int jogoId)
         {
             var usuarioJogo = await _usuarioJogoRepositorio.ObterAsync(usuarioId, jogoId);

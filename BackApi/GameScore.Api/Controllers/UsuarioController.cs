@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using GameScore.Dominio.Entidades;
-
 using GameScore.Api.Models.Requisicao;
 using GameScore.Api.Models.Resposta;
 using GameScore.Dominio;
