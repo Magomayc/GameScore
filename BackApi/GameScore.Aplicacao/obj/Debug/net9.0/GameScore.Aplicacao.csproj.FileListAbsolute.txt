@@ -10,3 +10,9 @@ C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\Game
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\refint\GameScore.Aplicacao.dll
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.pdb
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\ref\GameScore.Aplicacao.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Dominio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Repositorio.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Repositorio.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\bin\Debug\net9.0\GameScore.Dominio.pdb
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScore.Aplicacao.csproj.AssemblyReference.cache
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Aplicacao\obj\Debug\net9.0\GameScor.E5EC621B.Up2Date

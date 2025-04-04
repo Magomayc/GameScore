@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ofjPTf90VL2obH9n2k16aUjCC7xhvJsFdo2CDXaBhjk=",
+  "Source": "GameScore.Api",
+  "BasePath": "_content/GameScore.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

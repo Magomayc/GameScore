@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScore.Repositorio", "Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScore.Aplicacao", "GameScore.Aplicacao\GameScore.Aplicacao.csproj", "{96D8C6E7-462D-4B7D-A303-9BAD2E887479}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScore.Api", "GameScore.Api\GameScore.Api.csproj", "{53C040C3-3488-4680-954F-92E9B8568B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{96D8C6E7-462D-4B7D-A303-9BAD2E887479}.Release|x64.Build.0 = Release|Any CPU
 		{96D8C6E7-462D-4B7D-A303-9BAD2E887479}.Release|x86.ActiveCfg = Release|Any CPU
 		{96D8C6E7-462D-4B7D-A303-9BAD2E887479}.Release|x86.Build.0 = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|x64.Build.0 = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Debug|x86.Build.0 = Debug|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|x64.ActiveCfg = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|x64.Build.0 = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|x86.ActiveCfg = Release|Any CPU
+		{53C040C3-3488-4680-954F-92E9B8568B63}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
