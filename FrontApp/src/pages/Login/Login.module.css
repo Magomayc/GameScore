@@ -1,0 +1,21 @@
+.pagina_login{
+    background: url(../../assets/Fundo.png);
+    background-size: 100% 100%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .botao_login {
+
+    
+    flex-direction: column;
+    align-items: center;
+    width: 549px;
+    height: 56px;
+    background-color: #280e72
+
+    }
+}
