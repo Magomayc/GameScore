@@ -1,109 +1,83 @@
-import { useEffect, useState } from "react"
-import { Sidebar } from "../../components/Sidebar/Sidebar"
-import { Topbar } from "../../components/Topbar/Topbar"
-import style from "./NovoUsuario.module.css"
+import style from "./NovoUsuario.module.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UsuarioAPI } from "../../services/usuarioAPI";
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
 
-export function NovoUsuario(){
-    const [nome, setNome] = useState("");
+export function NovoUsuario() {
+    const navigate = useNavigate();
+    const [usuario, setUsuario] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [tipoUsuario, setTipoUsuario] = useState("");
-    const [tiposUsuarios, setTiposUsuarios] = useState([]);
+    const [confirmarSenha, setConfirmarSenha] = useState("");
 
-    const navigate = useNavigate();
-
-    useEffect(()=>{ 
-        const fetchTiposUsuarios = async () => {
-            try {
-                const tipos = await UsuarioAPI.listarTiposUsuarioAsync();
-                setTiposUsuarios(tipos?.data);
-            } catch (error) {
-                console.log("Erro ao buscar tipos de usuários: ", error);
-            }
+    const handleCadastro = () => {
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem.");
+            return;
         }
-        fetchTiposUsuarios();
-    }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if(isFormValid()){
-            await UsuarioAPI.criarAsync(nome, email, senha, tipoUsuario);
-            navigate('/usuarios');
-        }else{
-            alert("Por favor, preencha todos os campos.");
-        }
-    }
+        // Aqui você pode fazer a chamada para API de cadastro
+        console.log("Cadastrando:", { usuario, email, senha });
 
-    const isFormValid = () => {
-        return nome && email && senha && tipoUsuario;
-    }
+        // Após cadastro, redireciona para login
+        navigate("/login");
+    };
 
-    return(
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <h3>Novo Usuário</h3>
+    return (
+        <div className={style.pagina_cadastro}>
+            <div className={style.cadastro_box}>
+                <h2 className={style.titulo}>Criar Conta</h2>
+                <Form className={style.formulario}>
+                    <Form.Group>
+                        <Form.Control
+                            type="text"
+                            placeholder="Nome de usuário"
+                            value={usuario}
+                            onChange={(e) => setUsuario(e.target.value)}
+                            className={style.input}
+                        />
+                    </Form.Group>
 
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formNome" className="mb-3">
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Digite seu nome"
-                                name="nome"
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)}
-                                required
-                            />
-                        </Form.Group>  
-                        <Form.Group controlId="formEmail" className="mb-3">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Digite seu email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </Form.Group>  
-                        <Form.Group controlId="formSenha" className="mb-3">
-                            <Form.Label>Senha</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="******"
-                                name="senha"
-                                value={senha}
-                                onChange={(e) => setSenha(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={style.input}
+                        />
+                    </Form.Group>
 
-                        <Form.Group controlId="formTipoUsuario" className="mb-3">
-                            <Form.Label>Tipo de Usuário</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="tipoUsuario"
-                                value={tipoUsuario}
-                                onChange={(e) => setTipoUsuario(e.target.value)}
-                                required>
-                                    <option value=""> Selecione o tipo de usuário</option>
-                                    {tiposUsuarios.map((tipo, key) => (
-                                        <option key={key} value={tipo.id}>{tipo.nome}</option>
-                                    ))}
-                                </Form.Control>
-                        </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                            type="password"
+                            placeholder="Senha"
+                            value={senha}
+                            onChange={(e) => setSenha(e.target.value)}
+                            className={style.input}
+                        />
+                    </Form.Group>
 
-                        <Button variant="primary" type="submit" disabled={!isFormValid()}>
-                            Salvar
-                        </Button>
-                    </Form>
-                </div>
-            </Topbar>
-        </Sidebar>
-    )
+                    <Form.Group>
+                        <Form.Control
+                            type="password"
+                            placeholder="Confirmar senha"
+                            value={confirmarSenha}
+                            onChange={(e) => setConfirmarSenha(e.target.value)}
+                            className={style.input}
+                        />
+                    </Form.Group>
+
+                    <Button
+                        variant="none"
+                        className={style.botao_cadastro}
+                        onClick={() => navigate("/login")}
+                    >
+                        Cadastrar
+                    </Button>
+                </Form>
+            </div>
+        </div>
+    );
 }

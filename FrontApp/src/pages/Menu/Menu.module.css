@@ -1,0 +1,108 @@
+.pagina_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.topo_direita {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+
+.botao_topo {
+    background-color: #720e4c;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.botao_topo:hover {
+    background-color: #8c1360;
+    transform: scale(1.05);
+}
+
+.menu_box {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.titulo {
+    color: white;
+    font-size: 28px;
+}
+
+.lista_jogos {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 0;
+    width: 100%;
+}
+
+.item_jogo {
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 4px #000;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.item_jogo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+.logo {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 24px auto;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+}

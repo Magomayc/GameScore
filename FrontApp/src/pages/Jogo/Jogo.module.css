@@ -1,0 +1,95 @@
+.pagina_jogos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    color: white;
+}
+
+.header {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+.botao_voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao_voltar:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.jogo_box {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.titulo {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.jogo_box p {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #eee;
+}
+
+.jogo_box strong {
+    color: #fff;
+}
+
+.nao_encontrado {
+    font-size: 20px;
+    color: #ffaaaa;
+    margin-top: 100px;
+    text-align: center;
+}
+
+/* Animação suave de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    font-size: 14px;
+}

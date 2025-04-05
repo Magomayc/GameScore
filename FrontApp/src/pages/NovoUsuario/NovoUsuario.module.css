@@ -1,7 +1,91 @@
-.pagina_conteudo {
-    width: 100%;
-    height: 100%;
- 
-    padding: 50px;
+.pagina_cadastro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.cadastro_box {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    gap: 20px;
+    
+}
+
+.titulo {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.formulario {
+    width: 100%;
+}
+
+.input {
+    width: 75%;
+    margin-bottom: 15px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 10px;
+    border: none;
+}
+
+.botao_cadastro {
+    width: 50%;
+    height: 50px;
+    background-color: #720e4c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.botao_cadastro:hover {
+    transform: scale(1.05);
+    background-color: #8c1360;
+}
+
+.login_link {
+    margin-top: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.login_link span {
+    color: white;
+    font-size: 14px;
+}
+
+.login_link button {
+    background: none;
+    border: none;
+    color: #ff83c5;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.login_link button:hover {
+    color: #ffc6e4;
+}

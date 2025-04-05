@@ -1,9 +1,10 @@
 import './App.css'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Login } from './pages/Login/Login'
-import { EditarUsuario } from './pages/EditarUsuario/EditarUsuario'
-import { Usuarios } from './pages/Usuario/Usuario'
 import { NovoUsuario } from './pages/NovoUsuario/NovoUsuario'
+import { Menu } from './pages/Menu/Menu'
+import { Jogo } from './pages/Jogo/Jogo'
+import { Usuario } from './pages/Usuario/Usuario'
 
 function App() {
 
@@ -12,11 +13,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/usuarios' element={<Usuarios />} />
-        <Route path='/usuario/novo' element={<NovoUsuario />} />
-        <Route path='/usuario/editar' element={<EditarUsuario />} />
-
+        <Route path='/novoUsuario' element={<NovoUsuario/>} />
+        <Route path='/menu' element={<Menu/>} />
+        <Route path='/jogo' element={<Jogo/>} />
+        <Route path='/usuario' element={<Usuario/>} />
+        <Route path="/jogo/:id" element={<Jogo />} />
       </Routes>
     </BrowserRouter>
   )

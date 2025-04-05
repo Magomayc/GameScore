@@ -1,9 +1,8 @@
 import style from './Sidebar.module.css';
-import Logo from '../../assets/Logo.png'
+import Logo from '../../assets/LogoPs.png'
 import { SideBarItem } from './SidebarItem/SidebarItem';
-import {MdGroup, MdInbox, MdSort} from 'react-icons/md'
-import { BsArrowCounterclockwise } from "react-icons/bs";
-import { HiDocumentCheck } from "react-icons/hi2";
+import {MdGroup} from 'react-icons/md'
+
 
 
 export function Sidebar({children}){
@@ -13,17 +12,13 @@ export function Sidebar({children}){
             <div className={style.sidebar_conteudo}>
 
                 <div className={style.sidebar_header}>
-                    <img src={Logo} alt="Logo tarefa360" className={style.logo} />
+                    <img src={Logo} alt="Logo" className={style.logo} />
 
                     <hr className={style.linha}/>
                 </div>
 
                 <div className={style.sidebar_corpo}>
                     <SideBarItem texto="Usuários" link="/usuarios" logo={<MdGroup/>} />
-                    <SideBarItem texto="Projetos" link="/projetos" logo={<MdInbox/>} />
-                    <SideBarItem texto="Histórias" link="/historias" logo={<MdSort/>} /> <SideBarItem texto="Sprints" link="/sprints" logo={<BsArrowCounterclockwise />}/>
-                    <SideBarItem texto="Tarefas" link="/tarefas" logo={<HiDocumentCheck />}/>
-
                 </div>
 
             </div>

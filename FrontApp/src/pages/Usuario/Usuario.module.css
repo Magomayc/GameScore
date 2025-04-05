@@ -1,47 +1,92 @@
-.pagina_conteudo {
-    width: 100%;
-    height: 100%;
-    
-    padding: 50px;
+.pagina_usuarios {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.tabela{
-    margin-top: 30px;
+.header {
+    position: absolute;
+    top: 20px;
+    left: 30px;
 }
 
-.tabela_corpo svg {
-    color: #212529;
-
-    margin: 5px;
-    font-size: 25px;
-}
-
-.botao_editar svg:hover{
-    color: #f08830;
-}
-
-.botao_deletar{
+.botao_topo {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
     border: none;
-    background: none;
-
-    & svg:hover{
-        color: #e4504b;
-    }
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.pagina_cabecalho{
+.botao_topo:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.usuarios_box {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.titulo {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lista {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
 
-    & .botao_novo{
-        text-decoration: none;
-        color: white;
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
-        padding: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
+.botao_editar {
+    background-color: #720e4c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-        border-radius: 10px;
-        background-color: #f08830;
-    }
+.botao_editar:hover {
+    background-color: #8c1360;
+    transform: scale(1.05);
 }
