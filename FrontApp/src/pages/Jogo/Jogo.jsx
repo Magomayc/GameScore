@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./Jogo.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { JogoAPI } from "../../services/jogoAPI"; // Certifique-se de importar corretamente sua API
 
 export function Jogo() {
     const navigate = useNavigate();
@@ -9,46 +10,23 @@ export function Jogo() {
     const [comentario, setComentario] = useState("");
     const [comentarios, setComentarios] = useState([]);
     const [mostraInput, setMostraInput] = useState(false);
+    const [jogoSelecionado, setJogoSelecionado] = useState(null);
+    const [erro, setErro] = useState(null);
 
-    const jogos = [
-        {
-            id: 1,
-            nome: "The Witcher 3",
-            genero: "RPG",
-            avaliacao: 9.8,
-            descricao: "A jornada de Geralt em um mundo sombrio e aberto, cheio de escolhas e consequências.",
-        },
-        {
-            id: 2,
-            nome: "God of War",
-            genero: "Ação/Aventura",
-            avaliacao: 9.5,
-            descricao: "Kratos e seu filho embarcam numa jornada épica através da mitologia nórdica.",
-        },
-        {
-            id: 3,
-            nome: "Minecraft",
-            genero: "Sandbox",
-            avaliacao: 9.0,
-            descricao: "Construa, explore e sobreviva em um mundo feito de blocos e possibilidades infinitas.",
-        },
-        {
-            id: 4,
-            nome: "Elden Ring",
-            genero: "RPG de Ação",
-            avaliacao: 9.7,
-            descricao: "Explore um vasto mundo aberto e desafie chefes épicos em combates intensos.",
-        },
-        {
-            id: 5,
-            nome: "FIFA 24",
-            genero: "Esportes",
-            avaliacao: 8.3,
-            descricao: "A experiência mais realista de futebol com times e modos atualizados.",
-        },
-    ];
+    // Carregar detalhes do jogo ao montar o componente
+    useEffect(() => {
+        const carregarJogo = async () => {
+            try {
+                const jogo = await JogoAPI.obterAsync(id); // Usando o método obtido da API
+                setJogoSelecionado(jogo);
+            } catch (error) {
+                setErro("Erro ao carregar os detalhes do jogo.");
+                console.error("Erro ao carregar o jogo:", error);
+            }
+        };
 
-    const jogoSelecionado = jogos.find((jogo) => jogo.id === Number(id));
+        carregarJogo();
+    }, [id]);
 
     const handleAdicionarComentario = () => {
         if (comentario.trim() !== "") {
@@ -67,11 +45,18 @@ export function Jogo() {
                 </button>
             </div>
 
+            {erro && <p className={style.erro}>{erro}</p>} {/* Exibindo erro se houver */}
+
             {jogoSelecionado ? (
                 <div className={style.jogo_box}>
                     <h2 className={style.titulo}>{jogoSelecionado.nome}</h2>
+
+                    {/* Exibição do jogo */}
+                    <div className={style.imagem_jogo}>
+                        <img src={jogoSelecionado.imagemUrl} alt={jogoSelecionado.nome} className={style.imagem} />
+                    </div>
+
                     <p><strong>Gênero:</strong> {jogoSelecionado.genero}</p>
-                    <p><strong>Avaliação:</strong> {jogoSelecionado.avaliacao}</p>
                     <p><strong>Descrição:</strong> {jogoSelecionado.descricao}</p>
 
                     <button

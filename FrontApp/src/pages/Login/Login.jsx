@@ -3,26 +3,57 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { UsuarioAPI } from "../../services/usuarioAPI";
 
 export function Login() {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
+    const [erro, setErro] = useState("");
 
-    const handleLogin = () => {
-        console.log("Usuário:", usuario, "Senha:", senha);
-        navigate(""); // redirecionar após login
+    const handleLogin = async () => {
+        setErro("");
+
+        if (!usuario || !senha) {
+            setErro("Preencha todos os campos.");
+            return;
+        }
+
+        try {
+            const response = await UsuarioAPI.loginAsync(usuario, senha);
+            console.log("Resposta da API:", response);
+
+            if (response && response.nome) {
+                const usuarioLogado = {
+                    id: response.id,
+                    nome: response.nome,
+                    email: response.email,
+                    tipoUsuarioId: response.tipoUsuarioId
+                };
+
+                localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+                navigate("/menu");
+            } else {
+                setErro("Usuário ou senha inválidos.");
+            }
+        } catch (error) {
+            console.error("Erro ao logar:", error);
+            setErro("Erro ao tentar fazer login.");
+        }
     };
 
     return (
         <div className={style.pagina_login}>
             <div className={style.login_box}>
                 <h2 className={style.titulo}>GameScore</h2>
-                <Form className={style.formulario}>
+                <Form className={style.formulario} onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                }}>
                     <Form.Group controlId="formUsuario">
                         <Form.Control
                             type="text"
-                            placeholder="Usuário"
+                            placeholder="Usuário ou Email"
                             value={usuario}
                             onChange={(e) => setUsuario(e.target.value)}
                             className={style.input}
@@ -39,17 +70,19 @@ export function Login() {
                         />
                     </Form.Group>
 
+                    {erro && <p className={style.mensagem_erro}>{erro}</p>}
+
                     <Button
                         variant="none"
                         className={style.botao_login}
-                        onClick={handleLogin}
+                        type="submit"
                     >
                         Entrar
                     </Button>
 
                     <div className={style.registro_link}>
                         <span>Não tem uma conta?</span>
-                        <button onClick={() => navigate("/novoUsuario")}>
+                        <button type="button" onClick={() => navigate("/novoUsuario")}>
                             Crie uma aqui
                         </button>
                     </div>

@@ -166,6 +166,30 @@ namespace GameScore.Api
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost]
+
+        [Route("Login")]
+        public async Task<IActionResult> LoginAsync([FromBody] UsuarioLogin requisicao)
+        {
+            try
+            {
+                var usuario = await _usuarioAplicacao.LoginAsync(requisicao.Email, requisicao.Senha);
+
+                var usuarioResposta = new UsuarioResposta
+                {
+                    Id = usuario.ID,
+                    Nome = usuario.Nome,
+                    Email = usuario.Email,
+                    TipoUsuarioId = usuario.TipoUsuarioId
+                };
+
+                return Ok(usuarioResposta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
+        }
         
     }
 

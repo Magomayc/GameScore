@@ -12,7 +12,7 @@
 }
 
 .login_box {
-    background-color: rgba(0, 0, 0, 0.6); /* fundo translúcido */
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -60,6 +60,7 @@
     transform: scale(1.05);
     background-color: #8c1360;
 }
+
 .registro_link {
     margin-top: 16px;
     text-align: center;
@@ -86,4 +87,13 @@
 
 .registro_link button:hover {
     color: #ffc6e4;
+}
+
+.mensagem_erro {
+    color: #ffcccc;
+    background-color: #44000099;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    text-align: center;
 }

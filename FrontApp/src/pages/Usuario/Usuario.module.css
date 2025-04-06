@@ -61,7 +61,7 @@
 
 .item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.05);
     padding: 20px;
@@ -84,9 +84,100 @@
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
 }
 
 .botao_editar:hover {
     background-color: #8c1360;
     transform: scale(1.05);
+}
+
+.foto_container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.foto_perfil,
+.foto_placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    border: 2px solid white;
+    transition: 0.3s ease;
+}
+
+.foto_editar {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #720e4c;
+    color: white;
+    font-size: 12px;
+    padding: 4px 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    font-weight: bold;
+}
+
+.input_foto {
+    display: none;
+}
+
+.botoes_foto {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.botao_salvar {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_salvar:hover {
+    background-color: #2980b9;
+}
+
+.botao_cancelar {
+    background-color: #c0392b;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_cancelar:hover {
+    background-color: #a93226;
+}
+
+.tipo_container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tipo_icone {
+    color: #f1c40f;
+}
+
+.carregando {
+    color: white;
+    text-align: center;
 }

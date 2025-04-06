@@ -50,5 +50,10 @@ namespace DataAccess.Repositorio
             await _contexto.SaveChangesAsync();
             return usuario.ID;
         }
+        public async Task<Usuario> ObterPorEmailAsync(string email)
+        {
+            return await _contexto.Usuarios
+            .FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }

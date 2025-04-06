@@ -161,6 +161,18 @@ namespace GameScore.Aplicacao
             }
         }
 
+        public async Task<Usuario> LoginAsync(string email, string senha)
+        {
+            var usuario = await _usuarioRepositorio.ObterPeloEmailAsync(email);
+
+            if (usuario == null || usuario.Senha != senha)
+            {
+                throw new Exception("E-mail ou senha inválidos.");
+            }
+
+            return usuario;
+        }
+
         #endregion
     }
 

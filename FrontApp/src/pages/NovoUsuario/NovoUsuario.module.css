@@ -89,3 +89,43 @@
 .login_link button:hover {
     color: #ffc6e4;
 }
+select.input {
+    width: 75%;
+    margin-bottom: 15px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: #333;
+}
+.mensagem_sucesso {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    font-size: 16px;
+    text-align: center;
+}
+
+.mensagem_erro {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    font-size: 16px;
+    text-align: center;
+}

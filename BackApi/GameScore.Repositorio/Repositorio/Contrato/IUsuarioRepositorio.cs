@@ -15,4 +15,6 @@ public interface IUsuarioRepositorio
     public Task<Usuario> ObterPeloEmailAsync(string email);
     
     public Task<int> SalvarAsync(Usuario usuario);
+
+    public Task<Usuario> ObterPorEmailAsync(string email);
 }

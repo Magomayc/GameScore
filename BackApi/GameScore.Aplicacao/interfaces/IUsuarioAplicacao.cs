@@ -22,6 +22,9 @@ namespace GameScore.Dominio
         public Task<IEnumerable<Usuario>> ListarAsync(bool ativo, string query);
 
         public IEnumerable<object> ListarTiposUsuario();
+        
+        Task<Usuario> LoginAsync(string email, string senha);
+        
 
     }
 }
