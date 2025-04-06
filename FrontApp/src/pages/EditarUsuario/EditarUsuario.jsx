@@ -1,113 +1,145 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Sidebar } from '../../components/Sidebar/Sidebar';
-import { Topbar } from '../../components/Topbar/Topbar';
 import style from './EditarUsuario.module.css';
 import { useState, useEffect } from 'react';
+import Form from "react-bootstrap/Form";
 import { UsuarioAPI } from '../../services/usuarioAPI';
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
 
-export function EditarUsuario(){
-    
+export function EditarUsuario() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [id] = useState(location.state);
+    const [id, setId] = useState(null);
+    const [senhaAntiga, setSenhaAntiga] = useState("");
+    const [novaSenha, setNovaSenha] = useState("");
+    const [confirmarSenha, setConfirmarSenha] = useState("");
 
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [tipoUsuario, setTipoUsuario] = useState("");
-    const [tiposUsuarios, setTiposUsuarios] = useState([]);
+    const [mensagem, setMensagem] = useState("");
+    const [tipoMensagem, setTipoMensagem] = useState("");
 
-    useEffect(()=>{ 
-        const fetchTiposUsuarios = async () => {
-            try {
-                const tipos = await UsuarioAPI.listarTiposUsuarioAsync();
-                setTiposUsuarios(tipos.data);
-            } catch (error) {
-                console.log("Erro ao buscar tipos de usuários: ", error);
+    useEffect(() => {
+        if (location.state) {
+            if (typeof location.state === "number") {
+                setId(location.state);
+            } else if (location.state.id) {
+                setId(location.state.id);
+            } else {
+                navigate("/usuarios");
             }
+        } else {
+            navigate("/usuarios");
         }
+    }, [location, navigate]);
 
-        const buscarDadosUsuario = async () => {
-            try{
-                const usuario = await UsuarioAPI.obterAsync(id);
-                setTipoUsuario(usuario.tipoUsuarioId);
-                setNome(usuario.nome);
-                setEmail(usuario.email);
-            }catch(error){
-                console.error("Error ao buscar dados do usuário: ", error);
-            }
-        }
-        buscarDadosUsuario();
-        fetchTiposUsuarios();
-    }, []);
+    const exibirMensagem = (texto, tipo) => {
+        setMensagem(texto);
+        setTipoMensagem(tipo);
+        setTimeout(() => {
+            setMensagem("");
+            setTipoMensagem("");
+        }, 4000);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(isFormValid()){
-            await UsuarioAPI.atualizarAsync(id, nome, email, tipoUsuario);
-            navigate('/usuarios');
-        }else{
-            alert("Por favor, preencha todos os campos.");
+    
+        if (!senhaAntiga || !novaSenha || !confirmarSenha) {
+            exibirMensagem("Preencha todos os campos.", "erro");
+            return;
         }
-    }
+    
+        if (novaSenha !== confirmarSenha) {
+            exibirMensagem("As senhas não coincidem.", "erro");
+            return;
+        }
+    
+        if (senhaAntiga === novaSenha) {
+            exibirMensagem("A nova senha não pode ser igual à anterior.", "erro");
+            return;
+        }
+    
+        try {
+            await UsuarioAPI.AtualizarSenhaAsync(id, novaSenha, senhaAntiga);
+            exibirMensagem("Senha atualizada com sucesso!", "sucesso");
+    
+            setSenhaAntiga("");
+            setNovaSenha("");
+            setConfirmarSenha("");
+        } catch (error) {
+            console.error("Erro ao atualizar senha:", error);
+    
+            const mensagemErro = 
+                error?.response?.data?.message || 
+                error?.response?.data ||
+                error.message ||
+                "Erro ao atualizar senha. Tente novamente.";
+    
+            // Detecta erros comuns
+            if (mensagemErro.toLowerCase().includes("senha atual")) {
+                exibirMensagem("Senha atual incorreta.", "erro");
+            } else if (mensagemErro.toLowerCase().includes("fraca")) {
+                exibirMensagem("A nova senha é muito fraca. Escolha uma mais segura.", "erro");
+            } else {
+                exibirMensagem(mensagemErro, "erro");
+            }
+        }
+    };
 
-    const isFormValid = () => {
-        return nome && email && tipoUsuario;
-    }
- 
-    return(
-        <Sidebar>
-            <Topbar>
-                <div className={style.pagina_conteudo}>
-                    <h3>Editar Usuário</h3>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formNome" className="mb-3">
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Digite seu nome"
-                                name="nome"
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)}
-                                required
-                            />
-                        </Form.Group>  
-                        <Form.Group controlId="formEmail" className="mb-3">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Digite seu email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </Form.Group>  
-                        
+    const camposPreenchidos = senhaAntiga && novaSenha && confirmarSenha;
 
-                        <Form.Group controlId="formTipoUsuario" className="mb-3">
-                            <Form.Label>Tipo de Usuário</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="tipoUsuario"
-                                value={tipoUsuario}
-                                onChange={(e) => setTipoUsuario(e.target.value)}
-                                required>
-                                    {tiposUsuarios.map((tipo) => (
-                                        <option key={tipo.id} value={tipo.id}>{tipo.nome}</option>
-                                    ))}
-                                </Form.Control>
-                        </Form.Group>
+    return (
+        <div className={style.pagina_editar}>
+            <div className={style.editar_box}>
+                <h3 className={style.titulo}>Alterar Senha</h3>
 
-                        <Button variant="primary" type="submit" disabled={!isFormValid()}>
+                {mensagem && (
+                    <div className={tipoMensagem === "sucesso" ? style.mensagem_sucesso : style.mensagem_erro}>
+                        {mensagem}
+                    </div>
+                )}
+
+                <Form onSubmit={handleSubmit} className={style.formulario}>
+                    <Form.Control
+                        type="password"
+                        placeholder="Senha atual"
+                        className={style.input}
+                        value={senhaAntiga}
+                        onChange={(e) => setSenhaAntiga(e.target.value)}
+                    />
+
+                    <Form.Control
+                        type="password"
+                        placeholder="Nova senha"
+                        className={style.input}
+                        value={novaSenha}
+                        onChange={(e) => setNovaSenha(e.target.value)}
+                    />
+
+                    <Form.Control
+                        type="password"
+                        placeholder="Confirmar nova senha"
+                        className={style.input}
+                        value={confirmarSenha}
+                        onChange={(e) => setConfirmarSenha(e.target.value)}
+                    />
+
+                    <div className={style.botoes}>
+                        <button 
+                            type="submit" 
+                            className={style.botao_salvar}
+                            disabled={!camposPreenchidos}
+                        >
                             Salvar
-                        </Button>
-                    </Form>
-                </div>
-            </Topbar>
-        </Sidebar>
-
-    )
+                        </button>
+                        <button
+                            type="button"
+                            className={style.botao_cancelar}
+                            onClick={() => navigate('/usuario')}
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </Form>
+            </div>
+        </div>
+    );
 }

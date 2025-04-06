@@ -28,14 +28,14 @@ export const UsuarioAPI = {
             throw error;
         }
     },
-    async alterarSenhaAsync(id, senha, senhaAntiga){
+    async AtualizarSenhaAsync(id, senha, senhaAntiga) {
         try {
-            const usuarioAlterarSenha = {
+            const usuarioAtualizarSenha = {
                 ID: id,
                 Senha: senha,
                 SenhaAntiga: senhaAntiga
             };
-            const response = await HTTPClient.put(`/Usuario/AlterarSenha`, usuarioAlterarSenha);
+            const response = await HTTPClient.put(`/Usuario/AtualizarSenha`, usuarioAtualizarSenha);
             return response.data;
         } catch (error) {
             console.error("Erro ao alterar senha do usuário: ", error);

@@ -1,7 +1,6 @@
 .pagina_menu {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background: url(../../assets/Fundo.png) no-repeat center center;
@@ -12,6 +11,7 @@
     padding: 20px;
     overflow-y: auto;
     box-sizing: border-box;
+    color: white;
 }
 
 .header {
@@ -71,7 +71,7 @@
 .lista_jogos {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
     padding: 0;
     margin: 0;
@@ -80,9 +80,6 @@
 
 .item_jogo {
     aspect-ratio: 1 / 1;
-    width: 100%;
-    min-width: 180px;
-    max-width: 220px;
     background-color: rgba(255, 255, 255, 0.1);
     background-size: cover;
     background-position: center;
@@ -126,7 +123,7 @@
 
 .info_jogo p {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: #ddd;
 }
@@ -153,13 +150,11 @@
     background-color: transparent;
 }
 
-/* Like */
 .botao_reacao.like {
     background-color: rgba(0, 255, 0, 0.15);
     color: #00ff73;
 }
 
-/* Dislike */
 .botao_reacao.dislike {
     background-color: rgba(255, 0, 0, 0.15);
     color: #ff4d4d;
@@ -170,15 +165,16 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Like and Dislike active states */
 .likeClicked {
-    background-color: rgba(0, 255, 255, 0.3); /* cor fria para o like */
-    transform: scale(1.1); /* Aumenta o botão */
+    background-color: rgba(0, 255, 255, 0.3);
+    transform: scale(1.1);
+    color: #00ffff;
 }
 
 .dislikeClicked {
-    background-color: rgba(0, 0, 255, 0.3); /* cor fria para o dislike */
-    transform: scale(1.1); /* Aumenta o botão */
+    background-color: rgba(0, 0, 255, 0.3);
+    transform: scale(1.1);
+    color: #9fa8ff;
 }
 
 .mensagem,
@@ -193,7 +189,7 @@
     width: 100%;
     height: 80px;
     border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.1); /* Placeholder */
+    background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,4 +202,10 @@
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
+}
+.mensagem {
+    color: #00ff73;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 8px;
 }

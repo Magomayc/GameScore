@@ -5,6 +5,8 @@ import { NovoUsuario } from './pages/NovoUsuario/NovoUsuario'
 import { Menu } from './pages/Menu/Menu'
 import { Jogo } from './pages/Jogo/Jogo'
 import { Usuario } from './pages/Usuario/Usuario'
+import { EditarUsuario } from './pages/EditarUsuario/EditarUsuario'
+import { NovoJogo } from './pages/NovoJogo/NovoJogo'
 
 function App() {
 
@@ -18,6 +20,9 @@ function App() {
         <Route path='/jogo' element={<Jogo/>} />
         <Route path='/usuario' element={<Usuario/>} />
         <Route path="/jogo/:id" element={<Jogo />} />
+        <Route path="/editarUsuario" element={<EditarUsuario />} />
+        <Route path="/novoJogo" element={<NovoJogo />} />
+
       </Routes>
     </BrowserRouter>
   )

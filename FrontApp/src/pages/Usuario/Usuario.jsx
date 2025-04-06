@@ -2,6 +2,7 @@ import style from "./Usuario.module.css";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI"; // ✅ Import da API
 
 const mapTipoUsuario = {
     1: "Administrador",
@@ -16,35 +17,40 @@ export function Usuario() {
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [fotoTemp, setFotoTemp] = useState(null);
     const [editandoFoto, setEditandoFoto] = useState(false);
+    const [jogosVinculados, setJogosVinculados] = useState([]); // ✅ Estado para jogos
 
     useEffect(() => {
-        try {
-            const usuarioSalvo = localStorage.getItem("usuarioLogado");
+        async function carregarDados() {
+            try {
+                const usuarioSalvo = localStorage.getItem("usuarioLogado");
 
-            if (!usuarioSalvo) {
+                if (!usuarioSalvo) {
+                    navigate("/login");
+                    return;
+                }
+
+                const usuario = JSON.parse(usuarioSalvo);
+                setUsuarioLogado(usuario);
+
+                const chaveFoto = `fotoPerfil_${usuario.email}`;
+                const fotoSalva = localStorage.getItem(chaveFoto);
+
+                if (fotoSalva) {
+                    setFotoPerfil(fotoSalva);
+                }
+
+                const associacoes = await UsuarioJogoAPI.listarAsync();
+                const jogosDoUsuario = associacoes.filter(j => j.usuarioId === usuario.id);
+                setJogosVinculados(jogosDoUsuario);
+
+            } catch (error) {
+                console.error("Erro ao carregar dados do usuário:", error);
                 navigate("/login");
-                return;
             }
-
-            const usuario = JSON.parse(usuarioSalvo);
-            console.log("Usuário logado:", usuario);
-            setUsuarioLogado(usuario);
-
-            const chaveFoto = `fotoPerfil_${usuario.email}`;
-            const fotoSalva = localStorage.getItem(chaveFoto);
-
-            if (fotoSalva) {
-                setFotoPerfil(fotoSalva);
-            }
-        } catch (error) {
-            console.error("Erro ao carregar dados do usuário:", error);
-            navigate("/login");
         }
-    }, [navigate]);
 
-    const handleEditar = () => {
-        alert(`Editar dados de ${usuarioLogado?.nome}`);
-    };
+        carregarDados();
+    }, [navigate]);
 
     const handleFotoClick = () => {
         fileInputRef.current.click();
@@ -137,17 +143,51 @@ export function Usuario() {
                                 <p><strong>Tipo:</strong> {mapTipoUsuario[usuarioLogado.tipoUsuarioId] || "Não informado"}</p>
                             </div>
 
-                            <Button
-                                variant="none"
-                                className={style.botao_editar}
-                                onClick={handleEditar}
-                            >
-                                Editar
-                            </Button>
+                            {jogosVinculados.length > 0 && (
+                                <div className={style.jogos_vinculados}>
+                                    <h4 className={style.subtitulo}>Jogos Curtidos</h4>
+                                    <ul className={style.lista_jogos}>
+                                        {jogosVinculados.map((jogo, index) => (
+                                            <li key={index} className={style.item_jogo}>
+                                                🎮 {jogo.jogoNome}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            <div className={style.botoes_usuario}>
+                                <Button
+                                    variant="none"
+                                    className={style.botao_editar}
+                                    onClick={() => navigate('/editarUsuario', { state: { id: usuarioLogado.id } })}
+                                >
+                                    Editar
+                                </Button>
+
+                                {usuarioLogado?.tipoUsuarioId === 1 && (
+                                    <>
+                                        <Button
+                                            variant="none"
+                                            className={style.botao_admin}
+                                            onClick={() => navigate('/usuarios')}
+                                        >
+                                            Gerenciar Usuários
+                                        </Button>
+                                        <Button
+                                            variant="none"
+                                            className={style.botao_admin}
+                                            onClick={() => navigate('/novoJogo')}
+                                        >
+                                            Criar Novo Jogo
+                                        </Button>
+                                    </>
+                                )}
+                            </div>
                         </li>
                     </ul>
                 ) : (
-                    <p style={{ color: "white", textAlign: "center" }}>Carregando usuário...</p>
+                    <p className={style.carregando}>Carregando usuário...</p>
                 )}
             </div>
         </div>

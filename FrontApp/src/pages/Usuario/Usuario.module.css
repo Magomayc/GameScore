@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .header {
@@ -39,9 +40,11 @@
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     max-height: 80vh;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .titulo {
@@ -72,24 +75,6 @@
 
 .item:hover {
     background-color: rgba(255, 255, 255, 0.1);
-}
-
-.botao_editar {
-    background-color: #720e4c;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 20px;
-}
-
-.botao_editar:hover {
-    background-color: #8c1360;
-    transform: scale(1.05);
 }
 
 .foto_container {
@@ -167,17 +152,96 @@
     background-color: #a93226;
 }
 
-.tipo_container {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.botao_editar {
+    background-color: #720e4c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.tipo_icone {
-    color: #f1c40f;
+.botao_editar:hover {
+    background-color: #8c1360;
+    transform: scale(1.05);
+}
+
+.botao_admin {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.botao_admin:hover {
+    background-color: #17a589;
+    transform: scale(1.05);
+}
+
+.botoes_usuario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .carregando {
     color: white;
     text-align: center;
+}
+
+.subtitulo {
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.jogos_vinculados {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.lista_jogos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+    text-align: center;
+}
+
+.item_jogo {
+    margin: 5px 0;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .usuarios_box {
+        padding: 20px;
+    }
+
+    .botao_topo {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
 }
