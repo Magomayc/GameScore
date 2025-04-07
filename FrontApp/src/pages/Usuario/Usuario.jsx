@@ -2,11 +2,11 @@ import style from "./Usuario.module.css";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI"; // ✅ Import da API
+import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI"; 
 
 const mapTipoUsuario = {
     1: "Administrador",
-    0: "Usuário"
+    2: "Usuário"
 };
 
 export function Usuario() {
@@ -17,7 +17,7 @@ export function Usuario() {
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [fotoTemp, setFotoTemp] = useState(null);
     const [editandoFoto, setEditandoFoto] = useState(false);
-    const [jogosVinculados, setJogosVinculados] = useState([]); // ✅ Estado para jogos
+    const [jogosVinculados, setJogosVinculados] = useState([]); 
 
     useEffect(() => {
         async function carregarDados() {
@@ -170,16 +170,16 @@ export function Usuario() {
                                         <Button
                                             variant="none"
                                             className={style.botao_admin}
-                                            onClick={() => navigate('/usuarios')}
+                                            onClick={() => navigate('/usuariosAdm')}
                                         >
                                             Gerenciar Usuários
                                         </Button>
                                         <Button
                                             variant="none"
                                             className={style.botao_admin}
-                                            onClick={() => navigate('/novoJogo')}
+                                            onClick={() => navigate('/jogos')}
                                         >
-                                            Criar Novo Jogo
+                                            Gerenciar Jogos
                                         </Button>
                                     </>
                                 )}

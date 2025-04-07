@@ -45,6 +45,7 @@ export function NovoUsuario() {
 
         try {
             await UsuarioAPI.criarAsync(usuario, email, senha, tipoUsuarioId);
+            console.log(usuario, email, senha, tipoUsuarioId);
             setMensagem("Usuário cadastrado com sucesso!");
             setTimeout(() => navigate("/login"), 2000);
         } catch (error) {
@@ -111,7 +112,9 @@ export function NovoUsuario() {
                                 <option key={tipo.id} value={tipo.id}>
                                     {tipo.nome}
                                 </option>
+                                
                             ))}
+                            
                         </Form.Select>
                     </Form.Group>
 

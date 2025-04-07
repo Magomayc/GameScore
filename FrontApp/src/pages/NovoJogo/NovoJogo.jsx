@@ -66,7 +66,7 @@ export function NovoJogo() {
                         <button type="submit" className={style.botao_salvar}>
                             Criar Jogo
                         </button>
-                        <button type="button" className={style.botao_cancelar} onClick={voltar}>
+                        <button type="button" className={style.botao_cancelar} onClick={() => navigate('/jogos')}>
                             Voltar
                         </button>
                     </div>

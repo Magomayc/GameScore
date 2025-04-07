@@ -1,0 +1,182 @@
+.pagina_jogos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    color: white;
+}
+
+.header {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.botao_topo {
+    background-color: #720e4c;
+    border: none;
+    padding: 10px 16px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    font-size: 14px;
+}
+
+.botao_topo:hover {
+    background-color: #8c1360;
+    transform: scale(1.05);
+}
+
+.jogos_box {
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 40px 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 1100px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.lista_jogos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.item_jogo {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 16px;
+    transition: background-color 0.3s ease;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.item_jogo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dados_jogo p {
+    margin: 6px 0;
+    color: #e0e0e0;
+}
+
+.botoes_jogo {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botao_editar {
+    background-color: #720e4c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao_editar:hover {
+    background-color: #8c1360;
+}
+
+.botao_excluir {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao_excluir:hover {
+    background-color: #a93226;
+}
+
+.rodape {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.botao_criar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao_criar:hover {
+    background-color: #2ecc71;
+}
+
+.mensagem,
+.erro {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    color: #ccc;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 22px;
+    }
+
+    .botao_topo {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .botao_criar {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}

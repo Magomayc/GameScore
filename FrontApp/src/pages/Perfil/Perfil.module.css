@@ -1,0 +1,153 @@
+.pagina_perfil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../../assets/Fundo.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    margin-bottom: 10px;
+}
+
+.botao_topo {
+    background-color: #720e4c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.botao_topo:hover {
+    background-color: #5e0b3e;
+    transform: scale(1.05);
+}
+
+.perfil_box {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    color: white;
+}
+
+.titulo {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* FOTO DE PERFIL */
+.foto_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.foto_perfil,
+.foto_placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    border: 2px solid white;
+    transition: 0.3s ease;
+}
+
+.info_usuario {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.subtitulo {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.lista_jogos {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+}
+
+.item_jogo {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.item_jogo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mensagem {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .perfil_box {
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
+
+    .info_usuario {
+        font-size: 15px;
+    }
+
+    .foto_perfil,
+    .foto_placeholder {
+        width: 100px;
+        height: 100px;
+        font-size: 22px;
+    }
+}

@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-sizing: border-box;
 }
 
 .header {
@@ -20,15 +19,15 @@
 }
 
 .botao_topo {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background-color: #720e4c;
     border: none;
     padding: 10px 16px;
+    color: white;
     border-radius: 6px;
-    font-weight: bold;
-    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    font-size: 14px;
 }
 
 .botao_topo:hover {
@@ -40,11 +39,9 @@
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 700px;
+    width: 700px;
     max-height: 80vh;
     overflow-y: auto;
-    box-sizing: border-box;
 }
 
 .titulo {
@@ -198,7 +195,6 @@
     color: white;
     text-align: center;
 }
-
 .subtitulo {
     color: white;
     margin-top: 20px;
@@ -224,24 +220,4 @@
 
 .item_jogo {
     margin: 5px 0;
-}
-
-/* Media query para telas menores */
-@media (max-width: 768px) {
-    .usuarios_box {
-        padding: 20px;
-    }
-
-    .botao_topo {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    .titulo {
-        font-size: 22px;
-    }
-
-    .subtitulo {
-        font-size: 18px;
-    }
 }

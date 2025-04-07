@@ -7,6 +7,13 @@ import { Jogo } from './pages/Jogo/Jogo'
 import { Usuario } from './pages/Usuario/Usuario'
 import { EditarUsuario } from './pages/EditarUsuario/EditarUsuario'
 import { NovoJogo } from './pages/NovoJogo/NovoJogo'
+import { EditarUsuarioAdm } from './pages/EditarUsuarioAdm/EditarUsuarioAdm'
+import { Jogos } from './pages/Jogos/Jogos'
+import { EditarJogo } from './pages/EditarJogo/EditarJogo'
+import { Perfil } from './pages/Perfil/Perfil'
+import { UsuariosAdm } from './pages/UsuariosAdmin/UsuariosAdm'
+import { Usuarios } from './pages/Usuarios/Usuarios'
+
 
 function App() {
 
@@ -22,6 +29,14 @@ function App() {
         <Route path="/jogo/:id" element={<Jogo />} />
         <Route path="/editarUsuario" element={<EditarUsuario />} />
         <Route path="/novoJogo" element={<NovoJogo />} />
+        <Route path="/usuariosAdm" element={<UsuariosAdm />} />
+        <Route path="/editarUsuarioAdm" element={<EditarUsuarioAdm/>} />
+        <Route path="/jogos" element={<Jogos/>} />
+        <Route path="/editarJogo" element={<EditarJogo/>} />
+        <Route path="/perfil" element={<Perfil/>} />
+        <Route path="/usuarios" element={<Usuarios/>} />
+        <Route path="/perfil/:usuarioId" element={<Perfil/>} />
+
 
       </Routes>
     </BrowserRouter>
