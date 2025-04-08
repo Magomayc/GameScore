@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UsuarioAPI } from "../../services/usuarioAPI";
+import logo from "../../assets/GameScoreLogo.png"; // ajuste o caminho se necessário
 
 export function Login() {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function Login() {
     return (
         <div className={style.pagina_login}>
             <div className={style.login_box}>
-                <h2 className={style.titulo}>GameScore</h2>
+                <img src={logo} alt="Logo GameScore" className={style.logo_login} />
                 <Form className={style.formulario} onSubmit={(e) => {
                     e.preventDefault();
                     handleLogin();

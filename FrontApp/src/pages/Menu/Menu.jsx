@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import { FaUser, FaSignOutAlt, FaUsers } from "react-icons/fa";
 import style from "./Menu.module.css";
-import Logo from "../../assets/LogoPs.png";
+import Logo from "../../assets/GameScoreLogo.png";
 import { JogoAPI } from "../../services/jogoAPI";
 import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI";
 
@@ -26,7 +25,7 @@ export function Menu() {
                 ]);
 
                 setJogos(Array.isArray(jogosData) ? jogosData : []);
-                
+
                 const contagemCurtidas = {};
                 const contagemDeslikes = {};
 
@@ -50,25 +49,19 @@ export function Menu() {
             }
         }
 
-        // Carregar dados do usuário logado
         const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
         setUsuarioLogado(usuario);
 
         carregarDados();
     }, []);
 
-    const irParaUsuarios = () => navigate("/usuario");
-    const irParaPerfil = () => navigate("/perfil");
     const sair = () => navigate("/login");
 
     const handleLikeClick = async (jogoId, event) => {
         event.stopPropagation();
 
         const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuario?.id) {
-            console.error("Usuário não logado.");
-            return;
-        }
+        if (!usuario?.id) return;
 
         try {
             await UsuarioJogoAPI.associarAsync(usuario.id, jogoId);
@@ -84,10 +77,7 @@ export function Menu() {
         event.stopPropagation();
 
         const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuario?.id) {
-            console.error("Usuário não logado.");
-            return;
-        }
+        if (!usuario?.id) return;
 
         try {
             await UsuarioJogoAPI.removerAsync(usuario.id, jogoId);
@@ -99,42 +89,44 @@ export function Menu() {
         }
     };
 
-    const obterPrimeiraLetra = (nome) => {
-        return nome ? nome.charAt(0).toUpperCase() : "";
-    };
-
     return (
         <div className={style.pagina_menu}>
+            {/* Header */}
             <div className={style.header}>
-                <div className={style.topo_direita}>
-                    {/* Botão de Usuários com ícone */}
+                <div className={style.topo_esquerda}>
                     <div
-                        className={style.usuario_ativo}
-                        onClick={() => navigate(`/usuario`)}
-                        title="Ir para usuários"
+                        className={style.icon_button}
+                        onClick={() => navigate("/Usuario")}
+                        title="Usuário"
                     >
-                        <FaUser size={24} /> {/* Ícone de usuário */}
+                        <FaUser size={22} />
                     </div>
+                </div>
 
-                    {/* Botão de Perfil com ícone */}
+                <div className={style.logo_container}>
+                    <img src={Logo} className={style.logo} alt="Logo GameScore" />
+                </div>
+
+                <div className={style.topo_direita}>
                     <div
-                        className={style.usuario_ativo}
-                        onClick={() => navigate(`/usuarios`)}
+                        className={style.icon_button}
+                        onClick={() => navigate("/usuarios")}
                         title="Usuários"
                     >
-                        <FaUsers size={24} /> {/* Ícone de perfil */}
+                        <FaUsers size={22} />
                     </div>
-
-                    {/* Botão de Sair com ícone */}
-                    <Button className={style.botao_topo} onClick={sair} title="Sair">
-                        <FaSignOutAlt size={18} /> {/* Ícone de sair */}
-                    </Button>
+                    <div
+                        className={style.icon_button}
+                        onClick={sair}
+                        title="Sair"
+                    >
+                        <FaSignOutAlt size={22} />
+                    </div>
                 </div>
             </div>
 
+            {/* Conteúdo */}
             <div className={style.menu_box}>
-                <img src={Logo} alt="Logo GameScore" className={style.logo} />
-
                 {carregando ? (
                     <p className={style.mensagem}>Carregando jogos...</p>
                 ) : erro ? (
@@ -151,7 +143,6 @@ export function Menu() {
                                 onClick={() => navigate(`/jogo/${jogo.id}`)}
                             >
                                 <div className={style.info_jogo}>
-                                    <div className={style.imagem_jogo}></div>
                                     <h4>{jogo.nome}</h4>
                                     <p>{jogo.genero}</p>
                                     <p>Curtidas: {curtidas[jogo.id] || 0}</p>
@@ -163,7 +154,6 @@ export function Menu() {
                                         >
                                             💚 {curtidas[jogo.id] || 0}
                                         </button>
-
                                         <button
                                             className={`${style.botao_reacao} ${style.dislike} ${reacoes[jogo.id] === "dislike" ? style.dislikeClicked : ""}`}
                                             onClick={(event) => handleDislikeClick(jogo.id, event)}

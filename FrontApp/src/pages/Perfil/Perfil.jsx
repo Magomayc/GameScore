@@ -40,32 +40,28 @@ export function Perfil() {
     useEffect(() => {
         async function carregarJogosCurtidos() {
             try {
-                // Obtém todas as associações de jogos
                 const associacoes = await UsuarioJogoAPI.listarAsync();
-                // Filtra as associações para os jogos vinculados ao usuário específico
-                const jogosDoUsuario = associacoes.filter(associacao => associacao.usuarioId === usuarioId);
-
-                // Carrega os dados dos jogos com base nos IDs dos jogos associados
+    
+                // Corrigido: converte usuarioId para número na comparação
+                const jogosDoUsuario = associacoes.filter(
+                    associacao => associacao.usuarioId === Number(usuarioId)
+                );
+    
                 const jogosCurtidosIds = jogosDoUsuario.map(associacao => associacao.jogoId);
-                
-                // Busca informações dos jogos com base nos IDs
-                const jogos = await JogoAPI.listarAsync(true); // 'true' indica que buscamos todos os jogos disponíveis
-
-                // Filtra os jogos que correspondem aos jogos vinculados ao usuário
+                const jogos = await JogoAPI.listarAsync(true);
                 const jogosFiltrados = jogos.filter(jogo => jogosCurtidosIds.includes(jogo.id));
-
-                // Atualiza o estado com os jogos vinculados ao usuário
+    
                 setJogosCurtidos(jogosFiltrados);
             } catch (erro) {
                 console.error("Erro ao carregar jogos vinculados ao usuário:", erro);
                 setErroJogos("Erro ao carregar jogos vinculados.");
             }
         }
-
+    
         if (usuarioId) {
             carregarJogosCurtidos();
         }
-    }, [usuarioId]); // Recarrega os jogos sempre que o usuarioId mudar
+    }, [usuarioId]);
 
     // Função para obter as iniciais do nome do usuário
     function obterIniciais(nome) {

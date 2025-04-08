@@ -8,26 +8,77 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 120px 20px 20px;
     overflow-y: auto;
     box-sizing: border-box;
     color: white;
 }
 
 .header {
-    width: 100%;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    background-color: transparent;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
-    box-sizing: border-box;
+    padding: 0 30px;
     z-index: 10;
+    box-shadow: none;
 }
 
+.topo_esquerda,
 .topo_direita {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    align-items: center;
+}
+
+.logo_container {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+}
+
+.logo {
+    height: 100px;
+    max-width: 320px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+    animation: pulse 2.0s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.06);
+        opacity: 0.95;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.menu_box {
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 30px 24px;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 950px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 20px;
+    
 }
 
 .botao_topo {
@@ -45,27 +96,6 @@
 .botao_topo:hover {
     background-color: #8c1360;
     transform: scale(1.05);
-}
-
-.menu_box {
-    background-color: rgba(0, 0, 0, 0.65);
-    padding: 40px 30px;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 1100px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.logo {
-    width: 220px;
-    height: auto;
-    margin-bottom: 10px;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.6));
 }
 
 .lista_jogos {
@@ -183,10 +213,10 @@
 
 .mensagem,
 .erro {
-    color: #fff;
     font-size: 16px;
     font-weight: 500;
     text-align: center;
+    color: #fff;
 }
 
 .mensagem {
@@ -224,7 +254,6 @@
     color: #00ff73;
 }
 
-/* Usuário ativo */
 .usuario_ativo {
     width: 40px;
     height: 40px;
@@ -246,4 +275,42 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
+}
+
+.icon_button {
+    background-color: #720e4c;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon_button:hover {
+    background-color: #8c1360;
+    transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+    .menu_box {
+        width: 95%;
+        padding: 20px 16px;
+    }
+
+    .lista_jogos {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        height: 80px;
+        max-width: 240px;
+    }
+
+    .botao_topo {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
 }
