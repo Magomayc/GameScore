@@ -24,7 +24,10 @@ export function NovoJogo() {
             setGenero("");
             setDescricao("");
 
-            setTimeout(() => setMensagem(""), 5000);
+            // Redireciona para a página de jogos após 1 segundo
+            setTimeout(() => {
+                navigate("/jogos");
+            }, 1000);
         } catch (error) {
             setErro("Erro ao criar jogo. Verifique os dados e tente novamente.");
             setTimeout(() => setErro(""), 5000);
@@ -66,7 +69,11 @@ export function NovoJogo() {
                         <button type="submit" className={style.botao_salvar}>
                             Criar Jogo
                         </button>
-                        <button type="button" className={style.botao_cancelar} onClick={() => navigate('/jogos')}>
+                        <button
+                            type="button"
+                            className={style.botao_cancelar}
+                            onClick={() => navigate('/jogos')}
+                        >
                             Voltar
                         </button>
                     </div>

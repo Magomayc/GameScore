@@ -86,7 +86,7 @@ export function EditarUsuarioAdm() {
     return (
         <div className={style.pagina_editar}>
             <div className={style.editar_box}>
-                <h3 className={style.titulo}>Editar Usuário (Administrador)</h3>
+                <h3 className={style.titulo}>Editar Usuário</h3>
 
                 {mensagem && (
                     <div className={tipoMensagem === "sucesso" ? style.mensagem_sucesso : style.mensagem_erro}>

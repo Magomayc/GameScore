@@ -9,6 +9,7 @@ public class Usuario
     public int TipoUsuarioId { get; set; }
     public bool Ativo { get; set; } 
     public List<UsuarioJogo> UsuarioJogos { get; set; }
+    public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
 
     public Usuario()
     {

@@ -30,7 +30,7 @@ export function Jogos() {
         if (window.confirm("Tem certeza que deseja excluir este jogo?")) {
             try {
                 await JogoAPI.deletarAsync(id);
-                setJogos(jogos.filter(j => j.id !== id));
+                setJogos((prev) => prev.filter((j) => j.id !== id));
             } catch (error) {
                 alert("Erro ao excluir jogo.");
                 console.error("Erro ao excluir jogo:", error);
@@ -57,14 +57,14 @@ export function Jogos() {
                     <p className={style.mensagem}>Carregando jogos...</p>
                 ) : erro ? (
                     <p className={style.erro}>{erro}</p>
-                ) : jogos.length === 0 ? (
-                    <p className={style.mensagem}>Nenhum jogo encontrado.</p>
                 ) : (
                     <>
-                        <ul className={style.lista_jogos}>
-                            {jogos.map((jogo) => (
-                                <li key={jogo.id} className={style.item_jogo}>
-                                    <div className={style.row_jogo}>
+                        {jogos.length === 0 ? (
+                            <p className={style.mensagem}>Nenhum jogo encontrado.</p>
+                        ) : (
+                            <ul className={style.lista_jogos}>
+                                {jogos.map((jogo) => (
+                                    <li key={jogo.id} className={style.item_jogo}>
                                         <div className={style.dados_jogo}>
                                             <p><strong>Nome:</strong> {jogo.nome}</p>
                                             <p><strong>Gênero:</strong> {jogo.genero}</p>
@@ -86,10 +86,10 @@ export function Jogos() {
                                                 <Trash2 size={20} />
                                             </button>
                                         </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
                         <div className={style.rodape}>
                             <button

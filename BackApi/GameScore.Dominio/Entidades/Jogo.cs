@@ -8,7 +8,7 @@ public class Jogo
     public string Descricao { get; set; }
     public List<UsuarioJogo> UsuarioJogos { get; set; }
     public bool Ativo { get; set; }
-
+    public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
     public Jogo()
     {
         Ativo = true;

@@ -136,9 +136,10 @@
 }
 
 .rodape {
-    margin-top: 30px;
+    width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .botao_criar {
@@ -178,5 +179,9 @@
     .botao_criar {
         font-size: 14px;
         padding: 10px 16px;
+    }
+
+    .lista_jogos {
+        grid-template-columns: 1fr;
     }
 }

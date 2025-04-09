@@ -17,8 +17,8 @@ class JogoConfiguracoes : IEntityTypeConfiguration<Jogo>
         builder.Property(usuario => usuario.Ativo).HasColumnName("Ativo");
 
         builder
-            .HasMany(jogo => jogo.UsuarioJogos) // Jogo tem muitos UsuarioJogo
-            .WithOne(uj => uj.Jogo) // UsuarioJogo tem um Jogo
-            .HasForeignKey(uj => uj.JogoID); // Chave estrangeira de UsuarioJogo
+            .HasMany(jogo => jogo.UsuarioJogos) 
+            .WithOne(uj => uj.Jogo) 
+            .HasForeignKey(uj => uj.JogoID); 
     }
 }

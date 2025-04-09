@@ -12,8 +12,6 @@ export function Menu() {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     const [reacoes, setReacoes] = useState({});
-    const [curtidas, setCurtidas] = useState({});
-    const [deslikes, setDeslikes] = useState({});
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
     useEffect(() => {
@@ -24,23 +22,19 @@ export function Menu() {
                     UsuarioJogoAPI.listarAsync()
                 ]);
 
-                setJogos(Array.isArray(jogosData) ? jogosData : []);
+                const jogosValidos = Array.isArray(jogosData) ? jogosData : [];
+                setJogos(jogosValidos);
 
-                const contagemCurtidas = {};
-                const contagemDeslikes = {};
-
-                for (const jogo of jogosData) {
-                    contagemCurtidas[jogo.id] = 0;
-                    contagemDeslikes[jogo.id] = 0;
-                }
+                const reacoesUsuario = {};
+                const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
                 for (const associacao of associacoes) {
-                    const idJogo = associacao.jogoId;
-                    contagemCurtidas[idJogo] = (contagemCurtidas[idJogo] || 0) + 1;
+                    if (associacao.usuarioId === usuario?.id) {
+                        reacoesUsuario[associacao.jogoId] = "like";
+                    }
                 }
 
-                setCurtidas(contagemCurtidas);
-                setDeslikes(contagemDeslikes);
+                setReacoes(reacoesUsuario);
             } catch (error) {
                 setErro("Erro ao carregar jogos.");
                 console.error("Erro ao carregar jogos:", error);
@@ -51,7 +45,6 @@ export function Menu() {
 
         const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
         setUsuarioLogado(usuario);
-
         carregarDados();
     }, []);
 
@@ -60,38 +53,31 @@ export function Menu() {
     const handleLikeClick = async (jogoId, event) => {
         event.stopPropagation();
 
-        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuario?.id) return;
+        if (!usuarioLogado?.id) return;
 
         try {
-            await UsuarioJogoAPI.associarAsync(usuario.id, jogoId);
+            await UsuarioJogoAPI.associarAsync(usuarioLogado.id, jogoId);
             setReacoes((prev) => ({ ...prev, [jogoId]: "like" }));
-            setCurtidas((prev) => ({ ...prev, [jogoId]: (prev[jogoId] || 0) + 1 }));
-            setDeslikes((prev) => ({ ...prev, [jogoId]: Math.max((prev[jogoId] || 0) - 1, 0) }));
         } catch (error) {
-            console.error("Erro ao vincular jogo ao usuário:", error);
+            console.error("Erro ao curtir o jogo:", error);
         }
     };
 
     const handleDislikeClick = async (jogoId, event) => {
         event.stopPropagation();
 
-        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuario?.id) return;
+        if (!usuarioLogado?.id) return;
 
         try {
-            await UsuarioJogoAPI.removerAsync(usuario.id, jogoId);
+            await UsuarioJogoAPI.removerAsync(usuarioLogado.id, jogoId);
             setReacoes((prev) => ({ ...prev, [jogoId]: "dislike" }));
-            setDeslikes((prev) => ({ ...prev, [jogoId]: (prev[jogoId] || 0) + 1 }));
-            setCurtidas((prev) => ({ ...prev, [jogoId]: Math.max((prev[jogoId] || 1) - 1, 0) }));
         } catch (error) {
-            console.error("Erro ao remover jogo do usuário:", error);
+            console.error("Erro ao descurtir o jogo:", error);
         }
     };
 
     return (
         <div className={style.pagina_menu}>
-            {/* Header */}
             <div className={style.header}>
                 <div className={style.topo_esquerda}>
                     <div
@@ -124,6 +110,7 @@ export function Menu() {
                     </div>
                 </div>
             </div>
+
             <div className={style.menu_box}>
                 {carregando ? (
                     <p className={style.mensagem}>Carregando jogos...</p>
@@ -136,27 +123,26 @@ export function Menu() {
                         {jogos.map((jogo) => (
                             <li
                                 key={jogo.id}
-                                className={style.item_jogo}
+                                className={`${style.item_jogo} ${jogos.length === 1 ? style.item_jogo_unico : ""}`}
                                 style={{ backgroundImage: `url(/assets/jogos/${jogo.id}.jpg)` }}
                                 onClick={() => navigate(`/jogo/${jogo.id}`)}
                             >
                                 <div className={style.info_jogo}>
-                                    <h4>{jogo.nome}</h4>
-                                    <p>{jogo.genero}</p>
-                                    <p>Curtidas: {curtidas[jogo.id] || 0}</p>
+                                    <h2 className={style.nome_jogo}>{jogo.nome}</h2>
+                                    <p className={style.genero}>{jogo.genero}</p>
 
                                     <div className={style.botoes_reacoes}>
                                         <button
                                             className={`${style.botao_reacao} ${style.like} ${reacoes[jogo.id] === "like" ? style.likeClicked : ""}`}
                                             onClick={(event) => handleLikeClick(jogo.id, event)}
                                         >
-                                            💚 {curtidas[jogo.id] || 0}
+                                            💚
                                         </button>
                                         <button
                                             className={`${style.botao_reacao} ${style.dislike} ${reacoes[jogo.id] === "dislike" ? style.dislikeClicked : ""}`}
                                             onClick={(event) => handleDislikeClick(jogo.id, event)}
                                         >
-                                            ❤️ {deslikes[jogo.id] || 0}
+                                            ❤️
                                         </button>
                                     </div>
 
