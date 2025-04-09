@@ -28,7 +28,6 @@ public class GameScoreContexto : DbContext
 
         if (_options == null)
             optionsBuilder.UseSqlite(@"Filename=./gamescore.sqlite;");
-        //"Server=DESKTOP-58UEHOH\\SQLEXPRESS;database=;Trusted_Connection=True;TrustServerCertificated=True"
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

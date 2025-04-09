@@ -3,8 +3,7 @@ using GameScore.Dominio.Entidades;
 namespace GameScore.Aplicacao
 {
     public interface IJogoAplicacao
-    {
-        
+    {       
         public Task<int> CriarAsync(Jogo jogo);
         
         public Task AtualizarAsync(Jogo jogo);

@@ -73,7 +73,7 @@ export function EditarUsuario() {
                 error.message ||
                 "Erro ao atualizar senha. Tente novamente.";
     
-            // Detecta erros comuns
+         
             if (mensagemErro.toLowerCase().includes("senha atual")) {
                 exibirMensagem("Senha atual incorreta.", "erro");
             } else if (mensagemErro.toLowerCase().includes("fraca")) {

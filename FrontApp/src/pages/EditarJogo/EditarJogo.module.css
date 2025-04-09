@@ -1,4 +1,4 @@
-/* Página e fundo */
+
 .pagina_editar {
     position: fixed;
     top: 0;
@@ -12,7 +12,7 @@
     justify-content: center;
 }
 
-/* Caixa de edição */
+
 .editar_box {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
@@ -25,7 +25,7 @@
     gap: 20px;
 }
 
-/* Título */
+
 .titulo {
     color: white;
     font-size: 28px;
@@ -33,7 +33,7 @@
     text-align: center;
 }
 
-/* Formulário geral */
+
 .formulario {
     width: 100%;
     display: flex;
@@ -41,7 +41,7 @@
     align-items: center;
 }
 
-/* Inputs padrão */
+
 .input {
     width: 75%;
     margin-bottom: 15px;
@@ -52,7 +52,7 @@
     border: none;
 }
 
-/* Container de botões lado a lado */
+
 .botoes {
     display: flex;
     justify-content: space-between;
@@ -60,7 +60,7 @@
     gap: 20px;
 }
 
-/* Botões */
+
 .botao_salvar,
 .botao_cancelar,
 .botao_voltar {
@@ -73,7 +73,7 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Cores dos botões */
+
 .botao_salvar {
     background-color: #27ae60;
     color: white;
@@ -90,7 +90,7 @@
     margin-top: 20px;
 }
 
-/* Hover dos botões */
+
 .botao_salvar:hover,
 .botao_cancelar:hover,
 .botao_voltar:hover {
@@ -98,7 +98,7 @@
     filter: brightness(1.1);
 }
 
-/* Mensagens flutuantes */
+
 .mensagem_sucesso,
 .mensagem_erro {
     position: fixed;

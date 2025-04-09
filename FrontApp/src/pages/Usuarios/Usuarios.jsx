@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "./Usuarios.module.css";
 import { UsuarioAPI } from "../../services/usuarioAPI";
-import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI"; // Importe a API de associações
+import { UsuarioJogoAPI } from "../../services/usuarioJogoAPI"; 
 import { useNavigate } from "react-router-dom";
 
 export function Usuarios() {
@@ -13,13 +13,10 @@ export function Usuarios() {
     useEffect(() => {
         async function carregarUsuarios() {
             try {
-                // Carrega os usuários
-                const dados = await UsuarioAPI.listarAsync(true); // Chama a API para listar usuários ativos
+                const dados = await UsuarioAPI.listarAsync(true); 
                 const usuariosComJogos = await Promise.all(dados.map(async (usuario) => {
-                    // Consulta os jogos associados ao usuário
-                    const jogosAssociados = await UsuarioJogoAPI.listarAsync(usuario.id);
-                    // Adiciona a quantidade de jogos curtidos ao objeto usuário
-                    return { ...usuario, jogosCurtidosCount: jogosAssociados.length };
+                const jogosAssociados = await UsuarioJogoAPI.listarAsync(usuario.id);
+                return { ...usuario, jogosCurtidosCount: jogosAssociados.length };
                 }));
                 setUsuarios(usuariosComJogos);
             } catch (error) {
@@ -31,11 +28,10 @@ export function Usuarios() {
         }
 
         carregarUsuarios();
-    }, []); // Executa apenas uma vez ao montar o componente
+    }, []);
 
-    // Função para navegar para o Perfil
     const irParaPerfil = (usuarioId) => {
-        navigate(`/perfil/${usuarioId}`); // Redireciona para a página de Perfil com o ID do usuário
+        navigate(`/perfil/${usuarioId}`); 
     };
 
     return (
@@ -61,13 +57,13 @@ export function Usuarios() {
                             <li 
                                 key={usuario.id} 
                                 className={style.item_usuario}
-                                onClick={() => irParaPerfil(usuario.id)} // Ao clicar no item do usuário, navega para o perfil
+                                onClick={() => irParaPerfil(usuario.id)} 
                             >
                                 <div className={style.row_usuario}>
                                     <div className={style.dados_usuario}>
                                         <p><strong>Usuário:</strong> {usuario.nome}</p>
                                         <p><strong>Email:</strong> {usuario.email}</p>
-                                        <p><strong>Jogos Curtidos:</strong> {usuario.jogosCurtidosCount || 0}</p> {/* Exibe a quantidade de jogos curtidos */}
+                                        <p><strong>Jogos Curtidos:</strong> {usuario.jogosCurtidosCount || 0}</p> 
                                     </div>
                                 </div>
                             </li>

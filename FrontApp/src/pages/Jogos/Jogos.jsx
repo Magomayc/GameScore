@@ -39,7 +39,6 @@ export function Jogos() {
     };
 
     const editarJogo = (id) => {
-        // Corrigido: rota correta é /editarJogo com letra maiúscula
         navigate("/editarJogo", { state: { id } });
     };
 

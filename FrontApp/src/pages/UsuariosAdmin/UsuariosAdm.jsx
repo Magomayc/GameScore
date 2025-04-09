@@ -4,7 +4,6 @@ import { UsuarioAPI } from "../../services/usuarioAPI";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
 
-// Mapeia os tipos de usuários
 const mapTipoUsuario = {
     1: "Administrador",
     2: "Usuário"
@@ -19,9 +18,9 @@ export function UsuariosAdm() {
     useEffect(() => {
         async function carregarUsuarios() {
             try {
-                const dados = await UsuarioAPI.listarAsync(true); // Chama a API para listar usuários ativos
-                console.log(dados); // Para debugging
-                setUsuarios(Array.isArray(dados) ? dados : []); // Confirma que os dados são um array
+                const dados = await UsuarioAPI.listarAsync(true); 
+                console.log(dados); 
+                setUsuarios(Array.isArray(dados) ? dados : []); 
             } catch (error) {
                 setErro("Erro ao carregar usuários.");
                 console.error("Erro ao carregar usuários:", error);
@@ -31,13 +30,13 @@ export function UsuariosAdm() {
         }
     
         carregarUsuarios();
-    }, []); // Executa apenas uma vez ao montar o componente
+    }, []); 
 
     const excluirUsuario = async (id) => {
         if (window.confirm("Tem certeza que deseja excluir este usuário?")) {
             try {
-                await UsuarioAPI.deletarAsync(id); // Chama a função de exclusão da API
-                setUsuarios((usuarios) => usuarios.filter(u => u.id !== id)); // Atualiza a lista após exclusão
+                await UsuarioAPI.deletarAsync(id); 
+                setUsuarios((usuarios) => usuarios.filter(u => u.id !== id)); 
             } catch (error) {
                 alert("Erro ao excluir usuário.");
                 console.error("Erro ao excluir:", error);
@@ -70,7 +69,6 @@ export function UsuariosAdm() {
                                     <div className={style.dados_usuario}>
                                         <p><strong>Nome:</strong> {usuario.nome}</p>
                                         <p><strong>Email:</strong> {usuario.email}</p>
-                                        {/* Mapeia e exibe o tipo de usuário */}
                                         <p><strong>Tipo:</strong> {mapTipoUsuario[usuario.tipoUsuarioId] || 'Não especificado'}</p>
                                     </div>
                                     <div className={style.botoes_usuario}>

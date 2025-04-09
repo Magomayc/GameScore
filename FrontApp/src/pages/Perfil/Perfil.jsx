@@ -6,14 +6,13 @@ import { JogoAPI } from "../../services/jogoAPI";
 import style from "./Perfil.module.css";
 
 export function Perfil() {
-    const { usuarioId } = useParams(); // Obtém o ID do usuário da URL
+    const { usuarioId } = useParams(); 
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState(null);
     const [jogosCurtidos, setJogosCurtidos] = useState([]);
     const [erro, setErro] = useState(null);
-    const [erroJogos, setErroJogos] = useState(null); // Estado para erros ao carregar os jogos
+    const [erroJogos, setErroJogos] = useState(null); 
 
-    // Carrega os dados do usuário
     useEffect(() => {
         async function carregarUsuario() {
             try {
@@ -36,13 +35,11 @@ export function Perfil() {
         }
     }, [usuarioId]);
 
-    // Carrega os jogos vinculados ao usuário
     useEffect(() => {
         async function carregarJogosCurtidos() {
             try {
                 const associacoes = await UsuarioJogoAPI.listarAsync();
     
-                // Corrigido: converte usuarioId para número na comparação
                 const jogosDoUsuario = associacoes.filter(
                     associacao => associacao.usuarioId === Number(usuarioId)
                 );
@@ -63,7 +60,6 @@ export function Perfil() {
         }
     }, [usuarioId]);
 
-    // Função para obter as iniciais do nome do usuário
     function obterIniciais(nome) {
         if (!nome) return "";
         return nome
@@ -75,7 +71,6 @@ export function Perfil() {
 
     return (
         <div className={style.pagina_perfil}>
-            {/* Botão Voltar */}
             <div className={style.header}>
                 <button
                     className={style.botao_topo}
@@ -88,11 +83,10 @@ export function Perfil() {
             <div className={style.perfil_box}>
                 <h1 className={style.titulo}>Perfil do Usuário</h1>
 
-                {erro && <p className={style.erro}>{erro}</p>} {/* Exibe erro caso haja algum */}
+                {erro && <p className={style.erro}>{erro}</p>} 
 
                 {usuario ? (
                     <>
-                        {/* Foto ou iniciais */}
                         <div className={style.foto_container}>
                             {usuario.foto ? (
                                 <img
@@ -106,8 +100,6 @@ export function Perfil() {
                                 </div>
                             )}
                         </div>
-
-                        {/* Informações do usuário */}
                         <div className={style.info_usuario}>
                             <p><strong>Nome:</strong> {usuario.nome}</p>
                             <p><strong>Email:</strong> {usuario.email}</p>
@@ -116,11 +108,9 @@ export function Perfil() {
                 ) : (
                     <p className={style.mensagem}>Carregando informações do usuário...</p>
                 )}
-
-                {/* Lista de jogos curtidos */}
                 <h2 className={style.subtitulo}>Jogos Curtidos</h2>
 
-                {erroJogos && <p className={style.erro}>{erroJogos}</p>} {/* Exibe erro caso haja problemas ao carregar os jogos */}
+                {erroJogos && <p className={style.erro}>{erroJogos}</p>}
 
                 {jogosCurtidos.length === 0 ? (
                     <p className={style.mensagem}>Você ainda não curtiu nenhum jogo.</p>

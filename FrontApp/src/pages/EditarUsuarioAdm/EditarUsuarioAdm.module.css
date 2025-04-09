@@ -1,4 +1,4 @@
-/* Página e fundo */
+
 .pagina_editar {
     position: fixed;
     top: 0;
@@ -12,7 +12,6 @@
     justify-content: center;
 }
 
-/* Caixa de edição */
 .editar_box {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
@@ -25,7 +24,7 @@
     gap: 20px;
 }
 
-/* Título */
+
 .titulo {
     color: white;
     font-size: 28px;
@@ -33,7 +32,7 @@
     text-align: center;
 }
 
-/* Formulário geral */
+
 .formulario {
     width: 100%;
     display: flex;
@@ -41,7 +40,7 @@
     align-items: center;
 }
 
-/* Inputs padrão */
+
 .input {
     width: 75%;
     margin-bottom: 15px;
@@ -57,7 +56,7 @@ select.input {
     color: #333;
 }
 
-/* Linha de informações */
+
 .info_linha {
     display: flex;
     align-items: center;
@@ -67,7 +66,7 @@ select.input {
     margin-bottom: 15px;
 }
 
-/* Texto label e valor */
+
 .label {
     flex: 1;
     color: white;
@@ -79,7 +78,7 @@ select.input {
     color: white;
 }
 
-/* Botões */
+
 .botao_editar,
 .botao_salvar,
 .botao_cancelar,
@@ -93,7 +92,7 @@ select.input {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Cores específicas */
+
 .botao_editar {
     background-color: #3498db;
     color: white;
@@ -115,7 +114,7 @@ select.input {
     color: white;
 }
 
-/* Hover nos botões principais */
+
 .botao_salvar:hover,
 .botao_cancelar:hover,
 .botao_editar:hover,
@@ -124,7 +123,7 @@ select.input {
     filter: brightness(1.1);
 }
 
-/* Container de botões lado a lado */
+
 .botoes {
     display: flex;
     justify-content: space-between;
@@ -132,7 +131,7 @@ select.input {
     gap: 20px;
 }
 
-/* Mensagens */
+
 .mensagem_sucesso,
 .mensagem_erro {
     position: fixed;

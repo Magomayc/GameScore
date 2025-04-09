@@ -124,8 +124,6 @@ export function Menu() {
                     </div>
                 </div>
             </div>
-
-            {/* Conteúdo */}
             <div className={style.menu_box}>
                 {carregando ? (
                     <p className={style.mensagem}>Carregando jogos...</p>

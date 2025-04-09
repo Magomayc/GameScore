@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import style from "./Jogo.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { JogoAPI } from "../../services/jogoAPI"; // Certifique-se de importar corretamente sua API
+import { JogoAPI } from "../../services/jogoAPI"; 
 
 export function Jogo() {
     const navigate = useNavigate();
@@ -13,11 +13,11 @@ export function Jogo() {
     const [jogoSelecionado, setJogoSelecionado] = useState(null);
     const [erro, setErro] = useState(null);
 
-    // Carregar detalhes do jogo ao montar o componente
+   
     useEffect(() => {
         const carregarJogo = async () => {
             try {
-                const jogo = await JogoAPI.obterAsync(id); // Usando o método obtido da API
+                const jogo = await JogoAPI.obterAsync(id); 
                 setJogoSelecionado(jogo);
             } catch (error) {
                 setErro("Erro ao carregar os detalhes do jogo.");
@@ -45,13 +45,13 @@ export function Jogo() {
                 </button>
             </div>
 
-            {erro && <p className={style.erro}>{erro}</p>} {/* Exibindo erro se houver */}
+            {erro && <p className={style.erro}>{erro}</p>} 
 
             {jogoSelecionado ? (
                 <div className={style.jogo_box}>
                     <h2 className={style.titulo}>{jogoSelecionado.nome}</h2>
 
-                    {/* Exibição do jogo */}
+                    
                     <div className={style.imagem_jogo}>
                         <img src={jogoSelecionado.imagemUrl} alt={jogoSelecionado.nome} className={style.imagem} />
                     </div>

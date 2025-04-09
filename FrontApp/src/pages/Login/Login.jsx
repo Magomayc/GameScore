@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UsuarioAPI } from "../../services/usuarioAPI";
-import logo from "../../assets/GameScoreLogo.png"; // ajuste o caminho se necessário
+import logo from "../../assets/GameScoreLogo.png"; 
 
 export function Login() {
     const navigate = useNavigate();

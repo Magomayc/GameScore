@@ -18,7 +18,7 @@
     width: 100%;
     max-width: 700px;
     display: flex;
-    justify-content: flex-end; /* Alinha o botão à direita */
+    justify-content: flex-end;
     margin-bottom: 10px;
 }
 
@@ -58,7 +58,6 @@
     margin-bottom: 20px;
 }
 
-/* FOTO DE PERFIL */
 .foto_container {
     display: flex;
     justify-content: center;
@@ -126,7 +125,6 @@
     margin-top: 10px;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .perfil_box {
         padding: 20px;
