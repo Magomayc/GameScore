@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { JogoAPI } from "../../services/jogoAPI";
 import style from "./NovoJogo.module.css";
-import Logo from "../../assets/LogoPs.png";
+import Logo from "../../assets/GameScoreLogo.png";
 
 export function NovoJogo() {
     const navigate = useNavigate();
@@ -24,7 +24,6 @@ export function NovoJogo() {
             setGenero("");
             setDescricao("");
 
-            // Redireciona para a página de jogos após 1 segundo
             setTimeout(() => {
                 navigate("/jogos");
             }, 1000);
@@ -40,7 +39,7 @@ export function NovoJogo() {
         <div className={style.pagina_novo_jogo}>
             <div className={style.novo_jogo_box}>
                 <img src={Logo} alt="Logo" className={style.logo} />
-                <h2 className={style.titulo}>Cadastrar Novo Jogo</h2>
+                <h2 className={style.titulo}> Novo Jogo </h2>
                 <form className={style.formulario} onSubmit={handleSubmit}>
                     <input
                         type="text"

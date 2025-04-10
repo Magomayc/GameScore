@@ -7,7 +7,9 @@ import { Pencil, Trash2 } from "lucide-react";
 export function Jogos() {
     const [jogos, setJogos] = useState([]);
     const [carregando, setCarregando] = useState(true);
-    const [erro, setErro] = useState(null);
+    const [erro, setErro] = useState("");
+    const [mensagem, setMensagem] = useState("");
+    const [jogoParaExcluir, setJogoParaExcluir] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,15 +28,30 @@ export function Jogos() {
         carregarJogos();
     }, []);
 
-    const excluirJogo = async (id) => {
-        if (window.confirm("Tem certeza que deseja excluir este jogo?")) {
-            try {
-                await JogoAPI.deletarAsync(id);
-                setJogos((prev) => prev.filter((j) => j.id !== id));
-            } catch (error) {
-                alert("Erro ao excluir jogo.");
-                console.error("Erro ao excluir jogo:", error);
-            }
+    const confirmarExclusao = (id) => {
+        setJogoParaExcluir(id);
+    };
+
+    const excluirJogoConfirmado = async () => {
+        try {
+            await JogoAPI.deletarAsync(jogoParaExcluir);
+            setJogos((prev) => prev.filter((j) => j.id !== jogoParaExcluir));
+            setMensagem("Jogo excluído com sucesso!");
+            setErro("");
+
+            setTimeout(() => {
+                setMensagem("");
+            }, 2000);
+        } catch (error) {
+            setErro("Erro ao excluir jogo.");
+            setMensagem("");
+            console.error("Erro ao excluir jogo:", error);
+
+            setTimeout(() => {
+                setErro("");
+            }, 2000);
+        } finally {
+            setJogoParaExcluir(null);
         }
     };
 
@@ -53,43 +70,42 @@ export function Jogos() {
             <div className={style.jogos_box}>
                 <h2 className={style.titulo}>Lista de Jogos</h2>
 
+                {mensagem && <p className={style.mensagem_sucesso}>{mensagem}</p>}
+                {erro && <p className={style.mensagem_erro}>{erro}</p>}
+
                 {carregando ? (
                     <p className={style.mensagem}>Carregando jogos...</p>
-                ) : erro ? (
-                    <p className={style.erro}>{erro}</p>
+                ) : jogos.length === 0 ? (
+                    <p className={style.mensagem}>Nenhum jogo encontrado.</p>
                 ) : (
                     <>
-                        {jogos.length === 0 ? (
-                            <p className={style.mensagem}>Nenhum jogo encontrado.</p>
-                        ) : (
-                            <ul className={style.lista_jogos}>
-                                {jogos.map((jogo) => (
-                                    <li key={jogo.id} className={style.item_jogo}>
-                                        <div className={style.dados_jogo}>
-                                            <p><strong>Nome:</strong> {jogo.nome}</p>
-                                            <p><strong>Gênero:</strong> {jogo.genero}</p>
-                                            <p><strong>Descrição:</strong> {jogo.descricao}</p>
-                                        </div>
-                                        <div className={style.botoes_jogo}>
-                                            <button
-                                                className={style.botao_editar}
-                                                onClick={() => editarJogo(jogo.id)}
-                                                title="Editar"
-                                            >
-                                                <Pencil size={20} />
-                                            </button>
-                                            <button
-                                                className={style.botao_excluir}
-                                                onClick={() => excluirJogo(jogo.id)}
-                                                title="Excluir"
-                                            >
-                                                <Trash2 size={20} />
-                                            </button>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+                        <ul className={style.lista_jogos}>
+                            {jogos.map((jogo) => (
+                                <li key={jogo.id} className={style.item_jogo}>
+                                    <div className={style.dados_jogo}>
+                                        <p><strong>Nome:</strong> {jogo.nome}</p>
+                                        <p><strong>Gênero:</strong> {jogo.genero}</p>
+                                        <p><strong>Descrição:</strong> {jogo.descricao}</p>
+                                    </div>
+                                    <div className={style.botoes_jogo}>
+                                        <button
+                                            className={style.botao_editar}
+                                            onClick={() => editarJogo(jogo.id)}
+                                            title="Editar"
+                                        >
+                                            <Pencil size={20} />
+                                        </button>
+                                        <button
+                                            className={style.botao_excluir}
+                                            onClick={() => confirmarExclusao(jogo.id)}
+                                            title="Excluir"
+                                        >
+                                            <Trash2 size={20} />
+                                        </button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
 
                         <div className={style.rodape}>
                             <button
@@ -102,6 +118,21 @@ export function Jogos() {
                     </>
                 )}
             </div>
+            {jogoParaExcluir && (
+                <div className={style.modal_overlay}>
+                    <div className={style.modal}>
+                        <p>Tem certeza que deseja excluir este jogo?</p>
+                        <div className={style.modal_botoes}>
+                            <button onClick={excluirJogoConfirmado} className={style.botao_confirmar}>
+                                Sim
+                            </button>
+                            <button onClick={() => setJogoParaExcluir(null)} className={style.botao_cancelar}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

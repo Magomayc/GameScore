@@ -14,10 +14,15 @@ export function Usuarios() {
         async function carregarUsuarios() {
             try {
                 const dados = await UsuarioAPI.listarAsync(true); 
-                const usuariosComJogos = await Promise.all(dados.map(async (usuario) => {
-                const jogosAssociados = await UsuarioJogoAPI.listarAsync(usuario.id);
-                return { ...usuario, jogosCurtidosCount: jogosAssociados.length };
-                }));
+                const todasCurtidas = await UsuarioJogoAPI.listarAsync();
+    
+                const usuariosComJogos = dados.map((usuario) => {
+                    const curtidasDoUsuario = todasCurtidas.filter(
+                        (item) => item.usuarioId === usuario.id
+                    );
+                    return { ...usuario, jogosCurtidosCount: curtidasDoUsuario.length };
+                });
+    
                 setUsuarios(usuariosComJogos);
             } catch (error) {
                 setErro("Erro ao carregar usuários.");
@@ -25,8 +30,7 @@ export function Usuarios() {
             } finally {
                 setCarregando(false);
             }
-        }
-
+        }  
         carregarUsuarios();
     }, []);
 
@@ -63,7 +67,7 @@ export function Usuarios() {
                                     <div className={style.dados_usuario}>
                                         <p><strong>Usuário:</strong> {usuario.nome}</p>
                                         <p><strong>Email:</strong> {usuario.email}</p>
-                                        <p><strong>Jogos Curtidos:</strong> {usuario.jogosCurtidosCount || 0}</p> 
+                                        <p><strong>Jogos Curtidos:</strong> {usuario.jogosCurtidosCount}</p>
                                     </div>
                                 </div>
                             </li>

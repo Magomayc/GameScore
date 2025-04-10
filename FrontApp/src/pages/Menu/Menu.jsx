@@ -12,6 +12,7 @@ export function Menu() {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     const [reacoes, setReacoes] = useState({});
+    const [contagens, setContagens] = useState({});
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
     useEffect(() => {
@@ -25,8 +26,16 @@ export function Menu() {
                 const jogosValidos = Array.isArray(jogosData) ? jogosData : [];
                 setJogos(jogosValidos);
 
-                const reacoesUsuario = {};
                 const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+                setUsuarioLogado(usuario);
+
+                const reacoesUsuario = {};
+                const novaContagem = {};
+
+                for (const jogo of jogosValidos) {
+                    const associacoesDoJogo = associacoes.filter(a => a.jogoId === jogo.id);
+                    novaContagem[jogo.id] = associacoesDoJogo.length;
+                }
 
                 for (const associacao of associacoes) {
                     if (associacao.usuarioId === usuario?.id) {
@@ -35,6 +44,7 @@ export function Menu() {
                 }
 
                 setReacoes(reacoesUsuario);
+                setContagens(novaContagem);
             } catch (error) {
                 setErro("Erro ao carregar jogos.");
                 console.error("Erro ao carregar jogos:", error);
@@ -43,8 +53,6 @@ export function Menu() {
             }
         }
 
-        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-        setUsuarioLogado(usuario);
         carregarDados();
     }, []);
 
@@ -52,12 +60,15 @@ export function Menu() {
 
     const handleLikeClick = async (jogoId, event) => {
         event.stopPropagation();
-
         if (!usuarioLogado?.id) return;
 
         try {
             await UsuarioJogoAPI.associarAsync(usuarioLogado.id, jogoId);
             setReacoes((prev) => ({ ...prev, [jogoId]: "like" }));
+            setContagens((prev) => ({
+                ...prev,
+                [jogoId]: (prev[jogoId] || 0) + 1
+            }));
         } catch (error) {
             console.error("Erro ao curtir o jogo:", error);
         }
@@ -65,12 +76,15 @@ export function Menu() {
 
     const handleDislikeClick = async (jogoId, event) => {
         event.stopPropagation();
-
         if (!usuarioLogado?.id) return;
 
         try {
             await UsuarioJogoAPI.removerAsync(usuarioLogado.id, jogoId);
             setReacoes((prev) => ({ ...prev, [jogoId]: "dislike" }));
+            setContagens((prev) => ({
+                ...prev,
+                [jogoId]: Math.max((prev[jogoId] || 1) - 1, 0)
+            }));
         } catch (error) {
             console.error("Erro ao descurtir o jogo:", error);
         }
@@ -136,7 +150,7 @@ export function Menu() {
                                             className={`${style.botao_reacao} ${style.like} ${reacoes[jogo.id] === "like" ? style.likeClicked : ""}`}
                                             onClick={(event) => handleLikeClick(jogo.id, event)}
                                         >
-                                            💚
+                                            💚 <span>{contagens[jogo.id] || 0}</span>
                                         </button>
                                         <button
                                             className={`${style.botao_reacao} ${style.dislike} ${reacoes[jogo.id] === "dislike" ? style.dislikeClicked : ""}`}

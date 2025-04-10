@@ -9,5 +9,6 @@ namespace GameScore.Repositorio
         Task<Comentario> SalvarAsync(Comentario comentario); 
         Task<Comentario> AtualizarAsync(Comentario comentario); 
         Task<Comentario> ObterAsync(int comentarioId); 
+        Task<bool> RemoverAsync(int comentarioId); 
     }
 }

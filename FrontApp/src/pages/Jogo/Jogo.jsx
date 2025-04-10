@@ -14,8 +14,8 @@ export function Jogo() {
     const [jogoSelecionado, setJogoSelecionado] = useState(null);
     const [erro, setErro] = useState(null);
     const [usuarioLogado, setUsuarioLogado] = useState(null);
-    const [comentarioEditando, setComentarioEditando] = useState(null); // Para armazenar o comentário sendo editado
-    const [comentarioTextoEditado, setComentarioTextoEditado] = useState(""); // Texto do comentário editado
+    const [comentarioEditando, setComentarioEditando] = useState(null); 
+    const [comentarioTextoEditado, setComentarioTextoEditado] = useState(""); 
 
     useEffect(() => {
         const carregarDados = async () => {
@@ -79,7 +79,7 @@ export function Jogo() {
 
     const handleApagarComentario = async (comentarioId) => {
         try {
-            await ComentarioAPI.deletarAsync(comentarioId);
+            await ComentarioAPI.removerAsync(comentarioId);
             const comentariosAtualizados = await ComentarioAPI.listarPorJogoAsync(id);
             setComentarios(comentariosAtualizados);
         } catch (error) {
@@ -93,7 +93,7 @@ export function Jogo() {
             <div className={style.header}>
                 <button className={style.botao_voltar} onClick={() => navigate("/menu")}>
                     <ArrowLeft size={20} />
-                    <span>Menu</span>
+                    Menu
                 </button>
             </div>
 
@@ -148,9 +148,9 @@ export function Jogo() {
                                     <div className={style.comentario_topo}>
                                         <span className={style.comentario_usuario}>{comentario.usuarioNome}</span>
                                         <span className={style.comentario_data}>
-                                            {new Date(comentario.dataCriacao).toLocaleString("pt-BR")}
+                                            {new Date(comentario.dataCriacao).toLocaleDateString("pt-BR")}
                                         </span>
-                                        {usuarioLogado && usuarioLogado.id === comentario.usuarioId && ( // Só exibe os botões para o autor do comentário
+                                        {usuarioLogado && usuarioLogado.id === comentario.usuarioId && ( 
                                             <div className={style.botao_acao}>
                                                 <button
                                                     className={style.botao_editar}
