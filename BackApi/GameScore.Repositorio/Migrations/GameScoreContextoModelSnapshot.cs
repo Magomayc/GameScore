@@ -81,6 +81,11 @@ namespace GameScore.Repositorio.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Genero");
 
+                    b.Property<string>("Imagem")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasColumnName("Imagem");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -108,6 +113,11 @@ namespace GameScore.Repositorio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Email");
+
+                    b.Property<string>("Imagem")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasColumnName("Imagem");
 
                     b.Property<string>("Nome")
                         .IsRequired()

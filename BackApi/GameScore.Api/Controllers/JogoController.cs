@@ -6,6 +6,7 @@ using GameScore.Api.Models.Resposta;
 using System.Threading.Tasks;
 using System;
 using GameScore.Aplicacao;
+using System.Linq;
 
 namespace GameScore.Api
 {
@@ -33,7 +34,8 @@ namespace GameScore.Api
                     Nome = jogo.Nome,
                     Genero = jogo.Genero,
                     Descricao = jogo.Descricao,
-                    Ativo = jogo.Ativo
+                    Ativo = jogo.Ativo,
+                    Imagem = jogo.Imagem
                 };
 
                 return Ok(jogoResposta);
@@ -54,7 +56,8 @@ namespace GameScore.Api
                 {
                     Nome = requisicao.Nome,
                     Genero = requisicao.Genero,
-                    Descricao = requisicao.Descricao
+                    Descricao = requisicao.Descricao,
+                    Imagem = requisicao.Imagem
                 };
 
                 var id = await _jogoAplicacao.CriarAsync(jogo);
@@ -126,12 +129,23 @@ namespace GameScore.Api
             try
             {
                 var jogos = await _jogoAplicacao.ListarAsync(ativo, query);
-                return Ok(jogos);
+                var resposta = jogos.Select(jogo => new JogoResposta
+                {
+                    Id = jogo.ID,
+                    Nome = jogo.Nome,
+                    Genero = jogo.Genero,
+                    Descricao = jogo.Descricao,
+                    Imagem = jogo.Imagem,
+                    Ativo = jogo.Ativo
+                });
+
+                return Ok(resposta);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }

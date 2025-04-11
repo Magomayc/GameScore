@@ -5,5 +5,6 @@ namespace GameScore.Api.Models.Resposta
         public string Nome { get; set; }
         public string Email { get; set; }
         public int TipoUsuarioId { get; set; }
+        public string Imagem { get; set; }
     }
 }

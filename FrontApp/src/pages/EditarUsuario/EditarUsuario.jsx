@@ -58,7 +58,7 @@ export function EditarUsuario() {
         }
     
         try {
-            await UsuarioAPI.AtualizarSenhaAsync(id, novaSenha, senhaAntiga);
+            await UsuarioAPI.atualizarSenhaAsync(id, novaSenha, senhaAntiga);
             exibirMensagem("Senha atualizada com sucesso!", "sucesso");
     
             setSenhaAntiga("");

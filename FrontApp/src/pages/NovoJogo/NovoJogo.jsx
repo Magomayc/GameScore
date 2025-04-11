@@ -9,6 +9,7 @@ export function NovoJogo() {
     const [nome, setNome] = useState("");
     const [genero, setGenero] = useState("");
     const [descricao, setDescricao] = useState("");
+    const [imagem, setImagem] = useState(""); // novo estado
     const [mensagem, setMensagem] = useState("");
     const [erro, setErro] = useState("");
 
@@ -18,11 +19,12 @@ export function NovoJogo() {
         setErro("");
 
         try {
-            await JogoAPI.criarAsync(nome, genero, descricao);
+            await JogoAPI.criarAsync(nome, genero, descricao, imagem); // incluído imagem
             setMensagem(`Jogo '${nome}' criado com sucesso!`);
             setNome("");
             setGenero("");
             setDescricao("");
+            setImagem(""); // resetar imagem
 
             setTimeout(() => {
                 navigate("/jogos");
@@ -32,8 +34,6 @@ export function NovoJogo() {
             setTimeout(() => setErro(""), 5000);
         }
     };
-
-    const voltar = () => navigate("/menu");
 
     return (
         <div className={style.pagina_novo_jogo}>
@@ -64,6 +64,14 @@ export function NovoJogo() {
                         onChange={(e) => setDescricao(e.target.value)}
                         required
                     ></textarea>
+                    <input
+                        type="text"
+                        placeholder="URL da Imagem"
+                        className={style.input}
+                        value={imagem}
+                        onChange={(e) => setImagem(e.target.value)}
+                        required
+                    />
                     <div className={style.botoes}>
                         <button type="submit" className={style.botao_salvar}>
                             Criar Jogo

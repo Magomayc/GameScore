@@ -4,7 +4,6 @@ namespace GameScore.Api.Models.Requisicao
     {
         public int ID { get; set; }
         public string Senha { get; set;}
-
         public string SenhaAntiga { get;set;}
 
     }

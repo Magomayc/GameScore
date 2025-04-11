@@ -20,7 +20,12 @@ namespace DataAccess.Repositorio
 
         public async Task<IEnumerable<Usuario>> ListarAsync(bool ativo, string query)
         {
-            return await _contexto.Usuarios.Where(u=> u.Ativo == ativo && u.Nome.Contains(query)).ToListAsync();
+            query = query?.Trim() ?? "";
+
+            return await _contexto.Usuarios
+                .Where(u => u.Ativo == ativo && EF.Functions.Like(u.Nome, $"%{query}%"))
+                .OrderBy(u => u.Nome)
+                .ToListAsync();
         }
 
         public async Task<Usuario> ObterAsync(int usuarioId)

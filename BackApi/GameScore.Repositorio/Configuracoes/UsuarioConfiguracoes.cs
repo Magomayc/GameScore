@@ -16,6 +16,11 @@ class UsuarioConfiguracoes : IEntityTypeConfiguration<Usuario>
         builder.Property(usuario => usuario.Senha).HasColumnName("Senha").IsRequired();
         builder.Property(usuario => usuario.TipoUsuarioId).HasColumnName("TipoUsuarioId").IsRequired();
         builder.Property(usuario => usuario.Ativo).HasColumnName("Ativo");
+        
+        builder.Property(usuario => usuario.Imagem)
+               .HasColumnName("Imagem")
+               .HasMaxLength(300) 
+               .IsRequired(false);
 
         builder
             .HasMany(usuario => usuario.UsuarioJogos) 

@@ -8,31 +8,39 @@ export function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
+    const [busca, setBusca] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
-        async function carregarUsuarios() {
-            try {
-                const dados = await UsuarioAPI.listarAsync(true); 
-                const todasCurtidas = await UsuarioJogoAPI.listarAsync();
-    
-                const usuariosComJogos = dados.map((usuario) => {
-                    const curtidasDoUsuario = todasCurtidas.filter(
-                        (item) => item.usuarioId === usuario.id
-                    );
-                    return { ...usuario, jogosCurtidosCount: curtidasDoUsuario.length };
-                });
-    
-                setUsuarios(usuariosComJogos);
-            } catch (error) {
-                setErro("Erro ao carregar usuários.");
-                console.error("Erro ao carregar usuários:", error);
-            } finally {
-                setCarregando(false);
-            }
-        }  
         carregarUsuarios();
     }, []);
+
+    const carregarUsuarios = async (query = "") => {
+        setCarregando(true);
+        try {
+            const dados = await UsuarioAPI.listarAsync(true, query); 
+            const todasCurtidas = await UsuarioJogoAPI.listarAsync();
+
+            const usuariosComJogos = dados.map((usuario) => {
+                const curtidasDoUsuario = todasCurtidas.filter(
+                    (item) => item.usuarioId === usuario.id
+                );
+                return { ...usuario, jogosCurtidosCount: curtidasDoUsuario.length };
+            });
+
+            setUsuarios(usuariosComJogos);
+        } catch (error) {
+            setErro("Erro ao carregar usuários.");
+            console.error("Erro ao carregar usuários:", error);
+        } finally {
+            setCarregando(false);
+        }
+    };
+
+    const buscarUsuarios = async (nome) => {
+        setBusca(nome);
+        carregarUsuarios(nome);
+    };
 
     const irParaPerfil = (usuarioId) => {
         navigate(`/perfil/${usuarioId}`); 
@@ -48,6 +56,14 @@ export function Usuarios() {
 
             <div className={style.usuarios_box}>
                 <h2 className={style.titulo}>Lista de Usuários</h2>
+
+                <input
+                    className={style.barra_busca}
+                    type="text"
+                    placeholder="Buscar por nome..."
+                    value={busca}
+                    onChange={(e) => buscarUsuarios(e.target.value)}
+                />
 
                 {carregando ? (
                     <p className={style.mensagem}>Carregando usuários...</p>

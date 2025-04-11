@@ -7,6 +7,7 @@ public class Usuario
     public string Email { get; set; }
     public string Senha { get; set; }
     public int TipoUsuarioId { get; set; }
+    public string Imagem { get; set; }
     public bool Ativo { get; set; } 
     public List<UsuarioJogo> UsuarioJogos { get; set; }
     public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();

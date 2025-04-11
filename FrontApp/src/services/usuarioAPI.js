@@ -10,9 +10,9 @@ export const UsuarioAPI = {
             throw error;
         }
     },
-    async listarAsync(ativo){
+    async listarAsync(ativo, query = "") {
         try {
-            const response = await HTTPClient.get(`/Usuario/Listar?ativo=${ativo}`);
+            const response = await HTTPClient.get(`/Usuario/Listar?ativo=${ativo}&query=${encodeURIComponent(query)}`);
             return response.data;
         } catch (error) {
             console.error("Erro ao listar usuários: ", error);
@@ -24,11 +24,11 @@ export const UsuarioAPI = {
             const response = await HTTPClient.get("/Usuario/ListarTiposUsuario");
             return response.data;
         } catch (error) {
-            console.log("Erro ao listar tipos de usuário: ", error);
+            console.error("Erro ao listar tipos de usuário: ", error);
             throw error;
         }
     },
-    async AtualizarSenhaAsync(id, senha, senhaAntiga) {
+    async atualizarSenhaAsync(id, senha, senhaAntiga) {
         try {
             const usuarioAtualizarSenha = {
                 ID: id,
@@ -68,7 +68,7 @@ export const UsuarioAPI = {
             const response = await HTTPClient.put(`/Usuario/Atualizar`, usuarioAtualizar);
             return response.data;
         }catch{
-            console.error("Erro ao autualizar usuário: ", error);
+            console.error("Erro ao atualizar usuário: ", error);
             throw erro;
         }
     },

@@ -37,6 +37,7 @@ namespace GameScore.Aplicacao
             jogoDominio.Nome = jogo.Nome;
             jogoDominio.Descricao = jogo.Descricao;
             jogoDominio.Genero = jogo.Genero;
+            jogoDominio.Imagem = jogo.Imagem;
             
             await _jogoRepositorio.AtualizarAsync(jogoDominio);
         }
@@ -93,6 +94,10 @@ namespace GameScore.Aplicacao
             if (string.IsNullOrEmpty(jogo.Genero))
             {
                 throw new Exception("Gênero do jogo não pode ser vazio.");
+            }
+            if (string.IsNullOrEmpty(jogo.Imagem))
+            {
+                throw new Exception("Imagem do jogo não pode ser vazia.");
             }
         }
 

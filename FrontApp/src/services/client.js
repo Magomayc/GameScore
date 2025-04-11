@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 export const HTTPClient = axios.create({
-  baseURL: 'http://localhost:5221', 
-  headers:{
-    "Acess-Controll-Allow-Origins": "*",
-    "Acess-Controll-Allow-Headers": "Authorization",
-    "Acess-Controll-Allow-Methods": "GET, POST, OPTIONS, PUT, PATH, DELETE",
-    "Content-Type": "application/json;chaset=UTF-8",
+  baseURL: 'http://localhost:5221',
+  headers: {
+    "Content-Type": "application/json; charset=UTF-8",
   }
 });
+
+export const URL_BASE_IMAGEM = "https://cdn.corenexis.com/view/?img=m/ap11/";

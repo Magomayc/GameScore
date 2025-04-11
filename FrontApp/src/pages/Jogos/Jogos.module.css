@@ -15,6 +15,7 @@
     color: white;
 }
 
+
 .header {
     width: 100%;
     max-width: 1100px;
@@ -42,6 +43,7 @@
     background-color: #8c1360;
     transform: scale(1.05);
 }
+
 
 .jogos_box {
     background-color: rgba(0, 0, 0, 0.65);
@@ -82,14 +84,26 @@
     word-break: break-word;
     display: flex;
     flex-direction: column;
+    align-items: center; /* <- Centraliza a imagem e texto */
     justify-content: space-between;
     min-height: 180px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-align: center; /* <- Centraliza textos também */
 }
 
 .item_jogo:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+.imagem_jogo {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid white;
+    margin-bottom: 12px;
+}
+
 
 .dados_jogo p {
     margin: 6px 0;
@@ -178,26 +192,6 @@
     background-color: #e74c3c;
 }
 
-@media (max-width: 768px) {
-    .titulo {
-        font-size: 22px;
-    }
-
-    .botao_topo {
-        font-size: 13px;
-        padding: 8px 12px;
-    }
-
-    .botao_criar {
-        font-size: 14px;
-        padding: 10px 16px;
-    }
-
-    .lista_jogos {
-        grid-template-columns: 1fr;
-    }
-}
-
 .modal_overlay {
     position: fixed;
     top: 0;
@@ -246,4 +240,24 @@
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 22px;
+    }
+
+    .botao_topo {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .botao_criar {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    .lista_jogos {
+        grid-template-columns: 1fr;
+    }
 }

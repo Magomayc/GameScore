@@ -80,6 +80,9 @@
   gap: 24px;
   margin-top: 20px;
 }
+.menu_box:has(.lista_jogos li:nth-child(1):nth-last-child(1)) {
+  max-width: 300px;
+}
 
 .lista_jogos {
   list-style: none;
@@ -282,16 +285,24 @@
 
 .campo_busca {
   width: 100%;
-  max-width: 400px;
-  margin: 1rem auto 1.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #555;
-  border-radius: 8px;
-  background-color: #1e1e1e;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  padding: 8px 0px;
+  font-size: 18px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  background-color: rgba(30, 30, 30, 0.85);
   color: #fff;
-  display: block;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
+
+.campo_busca:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
 
 @media (max-width: 768px) {
   .menu_box {
@@ -337,4 +348,6 @@
   .info_jogo p {
     font-size: 13px;
   }
+  
 }
+

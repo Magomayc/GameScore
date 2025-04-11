@@ -31,7 +31,8 @@ namespace GameScore.Api
                     Id = usuarioDominio.ID,
                     Nome = usuarioDominio.Nome,
                     Email = usuarioDominio.Email,
-                    TipoUsuarioId = usuarioDominio.TipoUsuarioId
+                    TipoUsuarioId = usuarioDominio.TipoUsuarioId,
+                    Imagem = usuarioDominio.Imagem
                 };
 
                 return Ok(usuarioResposta);
@@ -51,7 +52,8 @@ namespace GameScore.Api
                     Nome = usuarioCriar.Nome,
                     Email = usuarioCriar.Email,
                     Senha = usuarioCriar.Senha,
-                    TipoUsuarioId = usuarioCriar.TipoUsuarioId
+                    TipoUsuarioId = usuarioCriar.TipoUsuarioId,
+                    Imagem = usuarioCriar.Imagem
                 };
 
                 var usuarioId = await _usuarioAplicacao.CriarAsync(usuarioDominio);
@@ -73,7 +75,8 @@ namespace GameScore.Api
                     ID = usuario.ID,
                     Nome = usuario.Nome,
                     Email = usuario.Email,
-                    TipoUsuarioId = usuario.TipoUsuarioId
+                    TipoUsuarioId = usuario.TipoUsuarioId,
+                    Imagem = usuario.Imagem
                 };
 
                 await _usuarioAplicacao.AtualizarAsync(usuarioDominio);
@@ -180,7 +183,8 @@ namespace GameScore.Api
                     Id = usuario.ID,
                     Nome = usuario.Nome,
                     Email = usuario.Email,
-                    TipoUsuarioId = usuario.TipoUsuarioId
+                    TipoUsuarioId = usuario.TipoUsuarioId,
+                    Imagem = usuario.Imagem
                 };
 
                 return Ok(usuarioResposta);

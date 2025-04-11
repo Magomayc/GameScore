@@ -20,6 +20,7 @@ namespace GameScore.Repositorio.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imagem = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -37,6 +38,7 @@ namespace GameScore.Repositorio.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TipoUsuarioId = table.Column<int>(type: "int", nullable: false),
+                    Imagem = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

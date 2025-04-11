@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameScore.Repositorio.Migrations
 {
     [DbContext(typeof(GameScoreContexto))]
-    [Migration("20250410025509_Inicio")]
+    [Migration("20250411030637_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />
@@ -84,6 +84,11 @@ namespace GameScore.Repositorio.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Genero");
 
+                    b.Property<string>("Imagem")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasColumnName("Imagem");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -111,6 +116,11 @@ namespace GameScore.Repositorio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Email");
+
+                    b.Property<string>("Imagem")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasColumnName("Imagem");
 
                     b.Property<string>("Nome")
                         .IsRequired()

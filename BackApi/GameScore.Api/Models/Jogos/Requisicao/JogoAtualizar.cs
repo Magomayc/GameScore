@@ -5,6 +5,7 @@ namespace GameScore.Api.Models.Requisicao
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Genero { get; set; }
+        public string Imagem { get; set; }
         public string Descricao { get; set; }
     }
 }

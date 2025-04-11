@@ -4,6 +4,9 @@ import { JogoAPI } from "../../services/jogoAPI";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
 
+// URL base da imagem
+const URL_BASE_IMAGEM = "https://cdn.corenexis.com/view/?img=m/ap11/";
+
 export function Jogos() {
     const [jogos, setJogos] = useState([]);
     const [carregando, setCarregando] = useState(true);
@@ -39,17 +42,13 @@ export function Jogos() {
             setMensagem("Jogo excluído com sucesso!");
             setErro("");
 
-            setTimeout(() => {
-                setMensagem("");
-            }, 2000);
+            setTimeout(() => setMensagem(""), 2000);
         } catch (error) {
             setErro("Erro ao excluir jogo.");
             setMensagem("");
             console.error("Erro ao excluir jogo:", error);
 
-            setTimeout(() => {
-                setErro("");
-            }, 2000);
+            setTimeout(() => setErro(""), 2000);
         } finally {
             setJogoParaExcluir(null);
         }
@@ -80,31 +79,47 @@ export function Jogos() {
                 ) : (
                     <>
                         <ul className={style.lista_jogos}>
-                            {jogos.map((jogo) => (
-                                <li key={jogo.id} className={style.item_jogo}>
-                                    <div className={style.dados_jogo}>
-                                        <p><strong>Nome:</strong> {jogo.nome}</p>
-                                        <p><strong>Gênero:</strong> {jogo.genero}</p>
-                                        <p><strong>Descrição:</strong> {jogo.descricao}</p>
-                                    </div>
-                                    <div className={style.botoes_jogo}>
-                                        <button
-                                            className={style.botao_editar}
-                                            onClick={() => editarJogo(jogo.id)}
-                                            title="Editar"
-                                        >
-                                            <Pencil size={20} />
-                                        </button>
-                                        <button
-                                            className={style.botao_excluir}
-                                            onClick={() => confirmarExclusao(jogo.id)}
-                                            title="Excluir"
-                                        >
-                                            <Trash2 size={20} />
-                                        </button>
-                                    </div>
-                                </li>
-                            ))}
+                            {jogos.map((jogo) => {
+                                const imagemURL = jogo.imagem?.startsWith("http")
+                                    ? jogo.imagem
+                                    : `${URL_BASE_IMAGEM}${jogo.imagem}`;
+
+                                return (
+                                    <li key={jogo.id} className={style.item_jogo}>
+                                        {jogo.imagem && (
+                                            <img
+                                                src={imagemURL}
+                                                alt={`Capa de ${jogo.nome}`}
+                                                className={style.imagem_jogo}
+                                                onError={(e) => {
+                                                    e.target.src = "https://placehold.co/150x150?text=Imagem+indisponível";
+                                                }}
+                                            />
+                                        )}
+                                        <div className={style.dados_jogo}>
+                                            <p><strong>Nome:</strong> {jogo.nome}</p>
+                                            <p><strong>Gênero:</strong> {jogo.genero}</p>
+                                            <p><strong>Descrição:</strong> {jogo.descricao}</p>
+                                        </div>
+                                        <div className={style.botoes_jogo}>
+                                            <button
+                                                className={style.botao_editar}
+                                                onClick={() => editarJogo(jogo.id)}
+                                            >
+                                                <Pencil size={16} style={{ marginRight: 6 }} />
+                                                Editar
+                                            </button>
+                                            <button
+                                                className={style.botao_excluir}
+                                                onClick={() => confirmarExclusao(jogo.id)}
+                                            >
+                                                <Trash2 size={16} style={{ marginRight: 6 }} />
+                                                Excluir
+                                            </button>
+                                        </div>
+                                    </li>
+                                );
+                            })}
                         </ul>
 
                         <div className={style.rodape}>
@@ -118,6 +133,7 @@ export function Jogos() {
                     </>
                 )}
             </div>
+
             {jogoParaExcluir && (
                 <div className={style.modal_overlay}>
                     <div className={style.modal}>

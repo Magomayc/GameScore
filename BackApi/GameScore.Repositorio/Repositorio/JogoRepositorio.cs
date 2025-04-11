@@ -20,7 +20,11 @@ namespace DataAccess.Repositorio
 
         public async Task<IEnumerable<Jogo>> ListarAsync(bool ativo, string query)
         {
-            return await _contexto.Jogos.Where(j=> j.Ativo == ativo && j.Nome.Contains(query)).ToListAsync();
+            query = query?.Trim() ?? "";
+
+            return await _contexto.Jogos
+                .Where(j => j.Ativo == ativo && j.Nome.Contains(query))
+                .ToListAsync();
         }
 
         public async Task<Jogo> ObterAsync(int jogoId)

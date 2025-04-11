@@ -1,5 +1,7 @@
 import { HTTPClient } from "./client";
 
+export const URL_BASE_IMAGEM = "https://cdn.corenexis.com/view/?img=m/ap11/";
+
 export const JogoAPI = {
     async obterAsync(jogoId) {
         try {
@@ -11,9 +13,9 @@ export const JogoAPI = {
         }
     },
 
-    async criarAsync(nome, genero, descricao) {
+    async criarAsync(nome, genero, descricao, imagemNomeArquivo) {
         try {
-            const novoJogo = { nome, genero, descricao };
+            const novoJogo = { nome, genero, descricao, imagem: imagemNomeArquivo };
             const response = await HTTPClient.post(`/Jogo/Criar`, novoJogo);
             return response.data;
         } catch (error) {
@@ -22,9 +24,9 @@ export const JogoAPI = {
         }
     },
 
-    async atualizarAsync(id, nome, genero, descricao) {
+    async atualizarAsync(id, nome, genero, descricao, imagemNomeArquivo) {
         try {
-            const jogoAtualizado = { id, nome, genero, descricao };
+            const jogoAtualizado = { id, nome, genero, descricao, imagem: imagemNomeArquivo };
             const response = await HTTPClient.put(`/Jogo/Atualizar`, jogoAtualizado);
             return response.data;
         } catch (error) {
@@ -53,12 +55,12 @@ export const JogoAPI = {
         }
     },
 
-    async listarAsync(ativo = true) {
+    async listarAsync(ativo = true, query = "") {
         try {
-            const response = await HTTPClient.get(`/Jogo/Listar?ativo=${ativo}`);
+            const response = await HTTPClient.get(`/Jogo/Listar?ativo=${ativo}&query=${encodeURIComponent(query)}`);
             return response.data;
         } catch (error) {
-            console.error("Erro ao listar jogos:", error);
+            console.error("Erro ao listar jogos:", error.response?.data || error.message);
             throw error;
         }
     }

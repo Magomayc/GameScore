@@ -29,8 +29,7 @@ namespace GameScore.Aplicacao
 
             return await _usuarioRepositorio.SalvarAsync(usuario);
         }
-
-
+           
         public async Task AtualizarAsync(Usuario usuario)
         {
 
@@ -45,6 +44,7 @@ namespace GameScore.Aplicacao
             usuarioDominio.Nome = usuario.Nome;
             usuarioDominio.Email = usuario.Email;
             usuarioDominio.TipoUsuarioId = usuario.TipoUsuarioId;
+            usuarioDominio.Imagem = usuario.Imagem;
 
             await _usuarioRepositorio.AtualizarAsync(usuarioDominio);
 
