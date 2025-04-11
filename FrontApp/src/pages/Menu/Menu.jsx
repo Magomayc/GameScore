@@ -14,6 +14,7 @@ export function Menu() {
     const [reacoes, setReacoes] = useState({});
     const [contagens, setContagens] = useState({});
     const [usuarioLogado, setUsuarioLogado] = useState(null);
+    const [busca, setBusca] = useState("");
 
     useEffect(() => {
         async function carregarDados() {
@@ -108,24 +109,35 @@ export function Menu() {
                 </div>
 
                 <div className={style.topo_direita}>
-                    <div
-                        className={style.icon_button}
-                        onClick={() => navigate("/usuarios")}
-                        title="Usuários"
-                    >
-                        <FaUsers size={22} />
-                    </div>
-                    <div
-                        className={style.icon_button}
-                        onClick={sair}
-                        title="Sair"
-                    >
-                        <FaSignOutAlt size={22} />
-                    </div>
-                </div>
+    {usuarioLogado?.tipoUsuarioId === 1 && (
+        <div
+            className={style.icon_button}
+            onClick={() => navigate("/usuarios")}
+            title="Usuários"
+        >
+            <FaUsers size={22} />
+        </div>
+    )}
+    <div
+        className={style.icon_button}
+        onClick={sair}
+        title="Sair"
+    >
+        <FaSignOutAlt size={22} />
+    </div>
+</div>
+
             </div>
 
             <div className={style.menu_box}>
+                <input
+                    type="text"
+                    placeholder="Buscar jogo pelo nome..."
+                    className={style.campo_busca}
+                    value={busca}
+                    onChange={(e) => setBusca(e.target.value)}
+                />
+
                 {carregando ? (
                     <p className={style.mensagem}>Carregando jogos...</p>
                 ) : erro ? (
@@ -134,45 +146,49 @@ export function Menu() {
                     <p className={style.mensagem}>Nenhum jogo cadastrado.</p>
                 ) : (
                     <ul className={style.lista_jogos}>
-                        {jogos.map((jogo) => (
-                            <li
-                                key={jogo.id}
-                                className={`${style.item_jogo} ${jogos.length === 1 ? style.item_jogo_unico : ""}`}
-                                style={{ backgroundImage: `url(/assets/jogos/${jogo.id}.jpg)` }}
-                                onClick={() => navigate(`/jogo/${jogo.id}`)}
-                            >
-                                <div className={style.info_jogo}>
-                                    <h2 className={style.nome_jogo}>{jogo.nome}</h2>
-                                    <p className={style.genero}>{jogo.genero}</p>
+                        {jogos
+                            .filter(jogo =>
+                                jogo.nome.toLowerCase().includes(busca.toLowerCase())
+                            )
+                            .map((jogo) => (
+                                <li
+                                    key={jogo.id}
+                                    className={`${style.item_jogo} ${jogos.length === 1 ? style.item_jogo_unico : ""}`}
+                                    style={{ backgroundImage: `url(/assets/jogos/${jogo.id}.jpg)` }}
+                                    onClick={() => navigate(`/jogo/${jogo.id}`)}
+                                >
+                                    <div className={style.info_jogo}>
+                                        <h2 className={style.nome_jogo}>{jogo.nome}</h2>
+                                        <p className={style.genero}>{jogo.genero}</p>
 
-                                    <div className={style.botoes_reacoes}>
-                                        <button
-                                            className={`${style.botao_reacao} ${style.like} ${reacoes[jogo.id] === "like" ? style.likeClicked : ""}`}
-                                            onClick={(event) => handleLikeClick(jogo.id, event)}
-                                        >
-                                            💚 <span>{contagens[jogo.id] || 0}</span>
-                                        </button>
-                                        <button
-                                            className={`${style.botao_reacao} ${style.dislike} ${reacoes[jogo.id] === "dislike" ? style.dislikeClicked : ""}`}
-                                            onClick={(event) => handleDislikeClick(jogo.id, event)}
-                                        >
-                                            ❤️
-                                        </button>
+                                        <div className={style.botoes_reacoes}>
+                                            <button
+                                                className={`${style.botao_reacao} ${style.like} ${reacoes[jogo.id] === "like" ? style.likeClicked : ""}`}
+                                                onClick={(event) => handleLikeClick(jogo.id, event)}
+                                            >
+                                                💚 <span>{contagens[jogo.id] || 0}</span>
+                                            </button>
+                                            <button
+                                                className={`${style.botao_reacao} ${style.dislike} ${reacoes[jogo.id] === "dislike" ? style.dislikeClicked : ""}`}
+                                                onClick={(event) => handleDislikeClick(jogo.id, event)}
+                                            >
+                                                ❤️
+                                            </button>
+                                        </div>
+
+                                        {reacoes[jogo.id] === "like" && (
+                                            <p className={style.mensagem}>
+                                                Você curtiu <strong>{jogo.nome}</strong>!
+                                            </p>
+                                        )}
+                                        {reacoes[jogo.id] === "dislike" && (
+                                            <p className={style.mensagem}>
+                                                Você não curtiu <strong>{jogo.nome}</strong>.
+                                            </p>
+                                        )}
                                     </div>
-
-                                    {reacoes[jogo.id] === "like" && (
-                                        <p className={style.mensagem}>
-                                            Você curtiu <strong>{jogo.nome}</strong>!
-                                        </p>
-                                    )}
-                                    {reacoes[jogo.id] === "dislike" && (
-                                        <p className={style.mensagem}>
-                                            Você não curtiu <strong>{jogo.nome}</strong>.
-                                        </p>
-                                    )}
-                                </div>
-                            </li>
-                        ))}
+                                </li>
+                            ))}
                     </ul>
                 )}
             </div>

@@ -1,7 +1,7 @@
 import style from "./NovoUsuario.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsuarioAPI } from "../../services/usuarioAPI";
 
@@ -11,47 +11,37 @@ export function NovoUsuario() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
-    const [tipoUsuarioId, setTipoUsuarioId] = useState(null);
-    const [tiposUsuario, setTiposUsuario] = useState([]);
     const [mensagem, setMensagem] = useState("");
     const [erro, setErro] = useState("");
 
-    useEffect(() => {
-        async function carregarTipos() {
-            try {
-                const tipos = await UsuarioAPI.listarTiposUsuarioAsync();
-                setTiposUsuario(tipos);
-            } catch (error) {
-                console.error("Erro ao carregar tipos de usuário:", error);
-            }
-        }
+const handleCadastro = async () => {
+    setMensagem("");
+    setErro("");
 
-        carregarTipos();
-    }, []);
+    if (!usuario || !email || !senha || !confirmarSenha) {
+        setErro("Preencha todos os campos.");
+        return;
+    }
 
-    const handleCadastro = async () => {
-        setMensagem("");
-        setErro("");
+    if (!email.includes("@")) {
+        setErro("Email inválido. Deve conter '@'.");
+        return;
+    }
 
-        if (!usuario || !email || !senha || !confirmarSenha || tipoUsuarioId === null) {
-            setErro("Preencha todos os campos.");
-            return;
-        }
+    if (senha !== confirmarSenha) {
+        setErro("As senhas não coincidem.");
+        return;
+    }
 
-        if (senha !== confirmarSenha) {
-            setErro("As senhas não coincidem.");
-            return;
-        }
-
-        try {
-            await UsuarioAPI.criarAsync(usuario, email, senha, tipoUsuarioId);
-            console.log(usuario, email, senha, tipoUsuarioId);
-            setMensagem("Usuário cadastrado com sucesso!");
-            setTimeout(() => navigate("/login"), 2000);
-        } catch (error) {
-            setErro("Erro ao cadastrar usuário.");
-        }
-    };
+    try {
+        const tipoUsuarioId = 2;
+        await UsuarioAPI.criarAsync(usuario, email, senha, tipoUsuarioId);
+        setMensagem("Usuário cadastrado com sucesso!");
+        setTimeout(() => navigate("/login"), 2000);
+    } catch (error) {
+        setErro("Erro ao cadastrar usuário.");
+    }
+};
 
     return (
         <div className={style.pagina_cadastro}>
@@ -96,26 +86,6 @@ export function NovoUsuario() {
                             onChange={(e) => setConfirmarSenha(e.target.value)}
                             className={style.input}
                         />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Select
-                            value={tipoUsuarioId ?? ""}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                setTipoUsuarioId(value === "" ? null : parseInt(value));
-                            }}
-                            className={style.input}
-                        >
-                            <option value="">Selecione o tipo de usuário</option>
-                            {tiposUsuario.map((tipo) => (
-                                <option key={tipo.id} value={tipo.id}>
-                                    {tipo.nome}
-                                </option>
-                                
-                            ))}
-                            
-                        </Form.Select>
                     </Form.Group>
 
                     <Button
