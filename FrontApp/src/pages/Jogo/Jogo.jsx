@@ -14,8 +14,8 @@ export function Jogo() {
     const [jogoSelecionado, setJogoSelecionado] = useState(null);
     const [erro, setErro] = useState(null);
     const [usuarioLogado, setUsuarioLogado] = useState(null);
-    const [comentarioEditando, setComentarioEditando] = useState(null); 
-    const [comentarioTextoEditado, setComentarioTextoEditado] = useState(""); 
+    const [comentarioEditando, setComentarioEditando] = useState(null);
+    const [comentarioTextoEditado, setComentarioTextoEditado] = useState("");
 
     useEffect(() => {
         const carregarDados = async () => {
@@ -25,14 +25,15 @@ export function Jogo() {
                     navigate("/login");
                     return;
                 }
+
                 const usuario = JSON.parse(usuarioSalvo);
                 setUsuarioLogado(usuario);
 
                 const jogo = await JogoAPI.obterAsync(id);
                 setJogoSelecionado(jogo);
 
-                const comentarios = await ComentarioAPI.listarPorJogoAsync(id);
-                setComentarios(comentarios);
+                const listaComentarios = await ComentarioAPI.listarPorJogoAsync(id);
+                setComentarios(listaComentarios);
             } catch (error) {
                 console.error("Erro ao carregar dados:", error);
                 setErro("Erro ao carregar os detalhes do jogo.");
@@ -47,8 +48,8 @@ export function Jogo() {
 
         try {
             await ComentarioAPI.criarAsync(usuarioLogado.id, id, comentario);
-            const comentariosAtualizados = await ComentarioAPI.listarPorJogoAsync(id);
-            setComentarios(comentariosAtualizados);
+            const atualizados = await ComentarioAPI.listarPorJogoAsync(id);
+            setComentarios(atualizados);
             setComentario("");
             setMostraInput(false);
         } catch (error) {
@@ -67,8 +68,8 @@ export function Jogo() {
 
         try {
             await ComentarioAPI.atualizarAsync(comentarioEditando.id, comentarioTextoEditado);
-            const comentariosAtualizados = await ComentarioAPI.listarPorJogoAsync(id);
-            setComentarios(comentariosAtualizados);
+            const atualizados = await ComentarioAPI.listarPorJogoAsync(id);
+            setComentarios(atualizados);
             setComentarioEditando(null);
             setComentarioTextoEditado("");
         } catch (error) {
@@ -80,8 +81,8 @@ export function Jogo() {
     const handleApagarComentario = async (comentarioId) => {
         try {
             await ComentarioAPI.removerAsync(comentarioId);
-            const comentariosAtualizados = await ComentarioAPI.listarPorJogoAsync(id);
-            setComentarios(comentariosAtualizados);
+            const atualizados = await ComentarioAPI.listarPorJogoAsync(id);
+            setComentarios(atualizados);
         } catch (error) {
             console.error("Erro ao apagar comentário:", error);
             setErro("Erro ao apagar comentário.");
@@ -105,9 +106,18 @@ export function Jogo() {
 
                     <div className={style.imagem_jogo}>
                         <img
-                            src={jogoSelecionado.imagemUrl}
-                            alt={jogoSelecionado.nome}
-                            className={style.imagem}
+                            src={
+                                jogoSelecionado.imagem && jogoSelecionado.imagem.trim() !== ""
+                                    ? jogoSelecionado.imagem
+                                    : "https://placehold.co/150x150?text=Imagem+indisponível"
+                            }
+                            alt={`Capa de ${jogoSelecionado.nome}`}
+                            className={style.imagem_jogo}
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src =
+                                    "https://placehold.co/150x150?text=Imagem+indisponível";
+                            }}
                         />
                     </div>
 
@@ -143,31 +153,31 @@ export function Jogo() {
                     {comentarios.length > 0 && (
                         <div className={style.comentarios_container}>
                             <h3 className={style.comentarios_titulo}>Comentários:</h3>
-                            {comentarios.map((comentario, index) => (
-                                <div key={index} className={style.comentario_card}>
+                            {comentarios.map((c) => (
+                                <div key={c.id} className={style.comentario_card}>
                                     <div className={style.comentario_topo}>
-                                        <span className={style.comentario_usuario}>{comentario.usuarioNome}</span>
+                                        <span className={style.comentario_usuario}>{c.usuarioNome}</span>
                                         <span className={style.comentario_data}>
-                                            {new Date(comentario.dataCriacao).toLocaleDateString("pt-BR")}
+                                            {new Date(c.dataCriacao).toLocaleDateString("pt-BR")}
                                         </span>
-                                        {usuarioLogado && usuarioLogado.id === comentario.usuarioId && ( 
+                                        {usuarioLogado && usuarioLogado.id === c.usuarioId && (
                                             <div className={style.botao_acao}>
                                                 <button
                                                     className={style.botao_editar}
-                                                    onClick={() => handleEditarComentario(comentario)}
+                                                    onClick={() => handleEditarComentario(c)}
                                                 >
                                                     Editar
                                                 </button>
                                                 <button
                                                     className={style.botao_apagar}
-                                                    onClick={() => handleApagarComentario(comentario.id)}
+                                                    onClick={() => handleApagarComentario(c.id)}
                                                 >
                                                     Apagar
                                                 </button>
                                             </div>
                                         )}
                                     </div>
-                                    {comentarioEditando && comentarioEditando.id === comentario.id ? (
+                                    {comentarioEditando && comentarioEditando.id === c.id ? (
                                         <div className={style.editar_comentario}>
                                             <textarea
                                                 value={comentarioTextoEditado}
@@ -188,7 +198,7 @@ export function Jogo() {
                                             </button>
                                         </div>
                                     ) : (
-                                        <p className={style.comentario_texto}>{comentario.texto}</p>
+                                        <p className={style.comentario_texto}>{c.texto}</p>
                                     )}
                                 </div>
                             ))}

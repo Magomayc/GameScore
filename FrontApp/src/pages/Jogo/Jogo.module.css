@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color:#720e4c;
+    background-color: #720e4c;
     color: white;
     border: none;
     padding: 10px 16px;
@@ -50,6 +50,9 @@
     text-align: center;
     animation: fadeIn 0.5s ease;
     margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .titulo {
@@ -70,15 +73,24 @@
 }
 
 .imagem_jogo {
-    margin-bottom: 20px;
-}
-
-.imagem {
     width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
+    max-width: 500px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+  
+  .imagem {
+    max-width: 250px;
+    width: 10%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
 
 .textarea {
     width: 100%;
@@ -136,7 +148,90 @@
     color: #ddd;
     font-size: 1rem;
     line-height: 1.4;
+    white-space: pre-wrap;
 }
+
+.botoes_comentario {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.botao_acao button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.botao_editar {
+    background-color: #4fc3f7;
+    color: #000;
+}
+
+.botao_editar:hover {
+    background-color: #3ba8d4;
+}
+
+.botao_apagar {
+    background-color: #e57373;
+    color: #000;
+}
+
+.botao_apagar:hover {
+    background-color: #d04545;
+}
+
+.botao_salvar {
+    background-color: #81c784;
+    color: #000;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_salvar:hover {
+    background-color: #66bb6a;
+}
+
+.botao_cancelar {
+    background-color: #b0bec5;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_cancelar:hover {
+    background-color: #90a4ae;
+}
+
+/* Textarea para edição */
+
+.edicao_textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    font-size: 14px;
+    background-color: #333;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Comentário não encontrado */
 
 .nao_encontrado {
     font-size: 20px;
@@ -144,6 +239,8 @@
     margin-top: 100px;
     text-align: center;
 }
+
+/* Animação */
 
 @keyframes fadeIn {
     from {
@@ -156,7 +253,6 @@
     }
 }
 
-/* Responsivo */
 @media (max-width: 480px) {
     .jogo_box {
         padding: 20px;
@@ -178,4 +274,20 @@
     .comentarios_titulo {
         font-size: 1.1rem;
     }
+
+    .botoes_comentario {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .botao_acao button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .imagem {
+        max-width: 100%;
+      }
 }
+
+

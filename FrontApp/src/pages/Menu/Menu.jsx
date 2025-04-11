@@ -27,28 +27,29 @@ export function Menu() {
                 const jogosValidos = Array.isArray(jogosData) ? jogosData : [];
                 setJogos(jogosValidos);
 
-                const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+                const usuarioString = localStorage.getItem("usuarioLogado");
+                const usuario = usuarioString ? JSON.parse(usuarioString) : null;
                 setUsuarioLogado(usuario);
 
-                const reacoesUsuario = {};
                 const novaContagem = {};
+                const reacoesUsuario = {};
 
-                for (const jogo of jogosValidos) {
+                jogosValidos.forEach(jogo => {
                     const associacoesDoJogo = associacoes.filter(a => a.jogoId === jogo.id);
                     novaContagem[jogo.id] = associacoesDoJogo.length;
-                }
+                });
 
-                for (const associacao of associacoes) {
-                    if (associacao.usuarioId === usuario?.id) {
-                        reacoesUsuario[associacao.jogoId] = "like";
+                associacoes.forEach(assoc => {
+                    if (assoc.usuarioId === usuario?.id) {
+                        reacoesUsuario[assoc.jogoId] = "like";
                     }
-                }
+                });
 
                 setReacoes(reacoesUsuario);
                 setContagens(novaContagem);
             } catch (error) {
-                setErro("Erro ao carregar jogos.");
                 console.error("Erro ao carregar jogos:", error);
+                setErro("Erro ao carregar jogos.");
             } finally {
                 setCarregando(false);
             }
@@ -57,7 +58,10 @@ export function Menu() {
         carregarDados();
     }, []);
 
-    const sair = () => navigate("/login");
+    const sair = () => {
+        localStorage.removeItem("usuarioLogado");
+        navigate("/login");
+    };
 
     const handleLikeClick = async (jogoId, event) => {
         event.stopPropagation();
@@ -65,8 +69,8 @@ export function Menu() {
 
         try {
             await UsuarioJogoAPI.associarAsync(usuarioLogado.id, jogoId);
-            setReacoes((prev) => ({ ...prev, [jogoId]: "like" }));
-            setContagens((prev) => ({
+            setReacoes(prev => ({ ...prev, [jogoId]: "like" }));
+            setContagens(prev => ({
                 ...prev,
                 [jogoId]: (prev[jogoId] || 0) + 1
             }));
@@ -81,8 +85,8 @@ export function Menu() {
 
         try {
             await UsuarioJogoAPI.removerAsync(usuarioLogado.id, jogoId);
-            setReacoes((prev) => ({ ...prev, [jogoId]: "dislike" }));
-            setContagens((prev) => ({
+            setReacoes(prev => ({ ...prev, [jogoId]: "dislike" }));
+            setContagens(prev => ({
                 ...prev,
                 [jogoId]: Math.max((prev[jogoId] || 1) - 1, 0)
             }));
@@ -95,11 +99,7 @@ export function Menu() {
         <div className={style.pagina_menu}>
             <div className={style.header}>
                 <div className={style.topo_esquerda}>
-                    <div
-                        className={style.icon_button}
-                        onClick={() => navigate("/Usuario")}
-                        title="Usuário"
-                    >
+                    <div className={style.icon_button} onClick={() => navigate("/Usuario")} title="Usuário">
                         <FaUser size={22} />
                     </div>
                 </div>
@@ -109,24 +109,15 @@ export function Menu() {
                 </div>
 
                 <div className={style.topo_direita}>
-    {usuarioLogado?.tipoUsuarioId === 1 && (
-        <div
-            className={style.icon_button}
-            onClick={() => navigate("/usuarios")}
-            title="Usuários"
-        >
-            <FaUsers size={22} />
-        </div>
-    )}
-    <div
-        className={style.icon_button}
-        onClick={sair}
-        title="Sair"
-    >
-        <FaSignOutAlt size={22} />
-    </div>
-</div>
-
+                    {usuarioLogado?.tipoUsuarioId === 1 && (
+                        <div className={style.icon_button} onClick={() => navigate("/usuarios")} title="Usuários">
+                            <FaUsers size={22} />
+                        </div>
+                    )}
+                    <div className={style.icon_button} onClick={sair} title="Sair">
+                        <FaSignOutAlt size={22} />
+                    </div>
+                </div>
             </div>
 
             <div className={style.menu_box}>
@@ -150,13 +141,27 @@ export function Menu() {
                             .filter(jogo =>
                                 jogo.nome.toLowerCase().includes(busca.toLowerCase())
                             )
-                            .map((jogo) => (
+                            .map(jogo => (
                                 <li
                                     key={jogo.id}
                                     className={`${style.item_jogo} ${jogos.length === 1 ? style.item_jogo_unico : ""}`}
-                                    style={{ backgroundImage: `url(/assets/jogos/${jogo.id}.jpg)` }}
                                     onClick={() => navigate(`/jogo/${jogo.id}`)}
                                 >
+                                    <div className={style.imagem_jogo}>
+                                        <img
+                                            src={
+                                                jogo.imagem?.trim()
+                                                    ? jogo.imagem
+                                                    : `${process.env.PUBLIC_URL}/assets/jogos/${jogo.id}.jpg`
+                                            }
+                                            alt={`Capa de ${jogo.nome}`}
+                                            onError={(e) => {
+                                                e.currentTarget.onerror = null;
+                                                e.currentTarget.src = "https://placehold.co/150x150?text=Imagem+indisponível";
+                                            }}
+                                        />
+                                    </div>
+
                                     <div className={style.info_jogo}>
                                         <h2 className={style.nome_jogo}>{jogo.nome}</h2>
                                         <p className={style.genero}>{jogo.genero}</p>

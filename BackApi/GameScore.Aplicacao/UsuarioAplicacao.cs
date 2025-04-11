@@ -74,7 +74,7 @@ namespace GameScore.Aplicacao
         }
 
         public async Task<Usuario> ObterAsync (int usuarioId){
-            var usuarioDominio = await _usuarioRepositorio.ObterAsync(usuarioId);
+            var usuarioDominio = await _usuarioRepositorio.ListarDapperAsync(usuarioId);
 
             if(usuarioDominio == null){
                 throw new Exception("Usuario não encontrado");

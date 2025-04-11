@@ -80,3 +80,4 @@ C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Api\bin\Debug\net9.0\runtimes\w
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Maycon aulas\GitRepositorio\BackApi\GameScore.Api\bin\Debug\net9.0\Dapper.dll

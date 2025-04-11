@@ -2,6 +2,7 @@ using DataAccess.Contexto;
 using Microsoft.EntityFrameworkCore;
 using GameScore.Dominio.Entidades;
 using GameScore.Repositorio;
+using System.Data;
 
 namespace DataAccess.Repositorio
 {
@@ -10,7 +11,6 @@ namespace DataAccess.Repositorio
         public UsuarioJogoRepositorio(GameScoreContexto contexto) : base(contexto)
         {
         }
-
         public async Task<IEnumerable<UsuarioJogo>> ListarAsync()
         {
             return await _contexto.UsuarioJogos

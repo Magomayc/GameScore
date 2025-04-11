@@ -28,8 +28,6 @@ export function Jogos() {
         carregarJogos();
     }, []);
 
-    const URL_BASE_IMAGEM = "https://cdn.corenexis.com/view/?img=m/ap11/";
-    
     const confirmarExclusao = (id) => {
         setJogoParaExcluir(id);
     };
@@ -46,7 +44,6 @@ export function Jogos() {
             setErro("Erro ao excluir jogo.");
             setMensagem("");
             console.error("Erro ao excluir jogo:", error);
-
             setTimeout(() => setErro(""), 2000);
         } finally {
             setJogoParaExcluir(null);
@@ -82,13 +79,14 @@ export function Jogos() {
                                 <li key={jogo.id} className={style.item_jogo}>
                                     {jogo.imagem && (
                                         <img
-    src={`${URL_BASE_IMAGEM}${jogo.imagem}`}
-    alt={`Capa de ${jogo.nome}`}
-    className={style.imagem_jogo}
-    onError={(e) => {
-        e.target.src = "https://placehold.co/150x150?text=Imagem+indisponível";
-    }}
-/>
+                                            src={jogo.imagem}
+                                            alt={`Capa de ${jogo.nome}`}
+                                            className={style.imagem_jogo}
+                                            onError={(e) => {
+                                                e.target.src =
+                                                    "https://placehold.co/150x150?text=Imagem+indisponível";
+                                            }}
+                                        />
                                     )}
                                     <div className={style.dados_jogo}>
                                         <p><strong>Nome:</strong> {jogo.nome}</p>
