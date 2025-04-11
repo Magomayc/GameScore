@@ -6,5 +6,3 @@ export const HTTPClient = axios.create({
     "Content-Type": "application/json; charset=UTF-8",
   }
 });
-
-export const URL_BASE_IMAGEM = "https://cdn.corenexis.com/view/?img=m/ap11/";

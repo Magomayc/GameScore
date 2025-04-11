@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "FDLnfbhTHgE=",
+  "dgSpecHash": "2M5T5jjpROk=",
   "success": true,
   "projectFilePath": "C:\\Maycon aulas\\GitRepositorio\\BackApi\\GameScore.Api\\GameScore.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mayco\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\mayco\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\mayco\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\mayco\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
     "C:\\Users\\mayco\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\mayco\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

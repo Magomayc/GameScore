@@ -27,7 +27,7 @@ namespace DataAccess.Repositorio
                 .OrderBy(u => u.Nome)
                 .ToListAsync();
         }
-
+        
         public async Task<Usuario> ObterAsync(int usuarioId)
         {
             return await _contexto.Usuarios.Where(u=>u.ID == usuarioId)

@@ -6,10 +6,12 @@ export const JogoAPI = {
     async obterAsync(jogoId) {
         try {
             const response = await HTTPClient.get(`/Jogo/Obter/${jogoId}`);
+            console.log("Resposta do servidor:", response.data);
             return response.data;
         } catch (error) {
             console.error("Erro ao obter jogo:", error);
             throw error;
+
         }
     },
 
@@ -21,6 +23,7 @@ export const JogoAPI = {
         } catch (error) {
             console.error("Erro ao criar jogo:", error);
             throw error;
+        
         }
     },
 
