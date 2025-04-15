@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameScore.Dominio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4f9c5125af6847592bb0fac88e03f0546066e83")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fb0de315783588fcfa5ca1cb56ec03a27cd8fc8")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameScore.Dominio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameScore.Dominio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

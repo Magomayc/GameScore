@@ -84,11 +84,11 @@
     word-break: break-word;
     display: flex;
     flex-direction: column;
-    align-items: center; /* <- Centraliza a imagem e texto */
+    align-items: center; 
     justify-content: space-between;
     min-height: 180px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    text-align: center; /* <- Centraliza textos também */
+    text-align: center; 
 }
 
 .item_jogo:hover {

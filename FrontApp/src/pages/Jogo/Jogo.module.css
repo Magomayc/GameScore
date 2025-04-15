@@ -109,7 +109,13 @@
     margin-top: 30px;
     color: white;
     text-align: left;
-}
+    width: 100%;             /* Ocupa toda a largura do container pai */
+    max-width: 600px;        /* Igual ao max-width da caixa de jogo, por exemplo */
+    height: 300px;           /* Define uma altura fixa para que todos tenham o mesmo tamanho */
+    overflow-y: auto;        /* Adiciona rolagem vertical se o conteúdo ultrapassar a altura */
+    padding: 10px;           /* Espaçamento interno opcional */
+    box-sizing: border-box;  /* Inclui padding na largura/altura total */
+  }
 
 .comentarios_titulo {
     font-size: 1.3rem;
