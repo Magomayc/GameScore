@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameScore.Repositorio.Migrations
 {
     [DbContext(typeof(GameScoreContexto))]
-    [Migration("20250411192324_Inicio")]
+    [Migration("20250416032800_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />
